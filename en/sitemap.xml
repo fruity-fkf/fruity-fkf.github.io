@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https:///en/about/</loc>
+    <loc>https://fruity-fkf.github.io/en/about/</loc>
     <lastmod>2024-04-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https:///en/</loc>
+    <loc>https://fruity-fkf.github.io/en/</loc>
     <lastmod>2024-04-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https:///en/posts/neovim/</loc>
+    <loc>https://fruity-fkf.github.io/en/posts/neovim/</loc>
     <lastmod>2024-04-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https:///en/posts/</loc>
+    <loc>https://fruity-fkf.github.io/en/posts/</loc>
     <lastmod>2024-04-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https:///en/tags/</loc>
+    <loc>https://fruity-fkf.github.io/en/tags/</loc>
   </url>
 </urlset>

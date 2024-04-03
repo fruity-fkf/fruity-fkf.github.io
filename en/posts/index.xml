@@ -1,19 +1,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Posts on FKFs blog</title>
-		<link>https:///en/posts/</link>
+		<link>https://fruity-fkf.github.io/en/posts/</link>
 		<description>Recent content in Posts on FKFs blog</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
 		<lastBuildDate>Wed, 03 Apr 2024 00:00:00 +0000</lastBuildDate>
-		<atom:link href="https:///en/posts/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://fruity-fkf.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>My views on Neovim and vi keybinds in general</title>
-			<link>https:///en/posts/neovim/</link>
+			<link>https://fruity-fkf.github.io/en/posts/neovim/</link>
 			<pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
 			
-			<guid>https:///en/posts/neovim/</guid>
+			<guid>https://fruity-fkf.github.io/en/posts/neovim/</guid>
 			<description><![CDATA[%!s(<nil>)]]></description>
 			<content type="html"><![CDATA[<h1 id="hoi">Hoi</h1>
 <p>For all that don&rsquo;t know what neovim is, It&rsquo;s a fork/improved version of vim which means VI improved. Vim is a fork of the old VI editor. It was one of the two big players in the editor wars of the ancient times. <a href="https://en.wikipedia.org/wiki/Editor_war">read this if you want to know more about the editor wars</a>.</p>
