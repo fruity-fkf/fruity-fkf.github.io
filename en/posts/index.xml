@@ -1,0 +1,42 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on FKFs blog</title>
+		<link>https:///en/posts/</link>
+		<description>Recent content in Posts on FKFs blog</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en</language>
+		<lastBuildDate>Wed, 03 Apr 2024 00:00:00 +0000</lastBuildDate>
+		<atom:link href="https:///en/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>My views on Neovim and vi keybinds in general</title>
+			<link>https:///en/posts/neovim/</link>
+			<pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
+			
+			<guid>https:///en/posts/neovim/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h1 id="hoi">Hoi</h1>
+<p>For all that don&rsquo;t know what neovim is, It&rsquo;s a fork/improved version of vim which means VI improved. Vim is a fork of the old VI editor. It was one of the two big players in the editor wars of the ancient times. <a href="https://en.wikipedia.org/wiki/Editor_war">read this if you want to know more about the editor wars</a>.</p>
+<p>So&hellip;.It&rsquo;s a fork of a fork of a code editor from the 1970s&hellip; You might be wondering why the fuck we use it instead of something &ldquo;Modern&rdquo; like VS code or the jetbrains IDEs.
+And that may be a valid question. And it has a simple answer as well. Simply put&hellip;</p>
+<h2 id="the-vi-keybinds-are-simply-better-everything-else-is-trash-and-if-you-disagree-then-stfu-bitch">The VI keybinds are simply better everything else is trash and if you disagree then stfu bitch.</h2>
+<p>The VI keybinds are a bit(well bit is an understatement)&hellip;..hard to learn/master or even remember.
+<img alt="image of the vi keys" src="https://preview.redd.it/neovim-cheat-sheet-v0-vmyvqrxi2e4c1.png?width=1080&crop=smart&auto=webp&s=ddfa65ee292fb9d7598774ccabb145d76ce132a4">
+BUTTTTTT&hellip;
+they&rsquo;re extremely extremely powerful.
+I can absolutely gurantee you&rsquo;ll be at least 50% faster when writing or refractoring or modifying code or any text file really.</p>
+<p>One other thing I love is the <strong>WORKFLOW</strong> . I can open the terminal and start editing my code. Since I am a dev that mostly does low level stuff it is very convenient for me to just stay in the terminal. And it is extremely fast. I am talking about startup times that are literally a fraction of a second. Once you master the vi keybinds the editor becomes an extention of your mind. You can jump to any part with a keystroke or two and change what you want in the blink of an eye.
+Also You get access to an AMAZING community that is constanly making awesome new plugins. Or if you want you can make your own plugins&hellip;
+You can pretty much get every modern IDE feature in neovim but in a more lightweight and less bloated setup.</p>
+<p>And did I mention that you can make neovim look STUNNING?
+Neovim, like tiling window managers has a lot of potential to be made <em>amazing</em> when it comes to looks.</p>
+<p>Plus you can use a frontend like <a href="https://neovide.dev/">Neovide</a> which makes neovim into a proper GUI IDE with AMAZING animations.
+And if you don&rsquo;t want to bother messing with making your own configs you can get a neovim distribution instead and modify or not modify it since they&rsquo;re pretty amazing at stock already.
+For neovim distributions I suggest using <a href="https://www.lazyvim.org/">Lazyvim</a></p>
+<p>personally I have gotten so used to using the vi keybinds that I use them in other places like the terminal, Browser and even other code editors if I really need to(I suggest using vi keybinds regardless of what editor it is :3 )</p>
+<h3 id="rant-over-3">Rant over :3</h3>
+]]></content>
+		</item>
+		
+	</channel>
+</rss>
