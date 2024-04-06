@@ -12,7 +12,7 @@ makepkg -si
 cd ~/ 
 
  
-yay -Syyu tmux fzf sxiv dmenu wget fish ranger htop bpytop zsh neovim npm nodejs python-pipx kitty waybar swayfx spotify thorium-browser-bin firefox swaybg swaync python-pywal 
+yay -Syyu tmux fzf sxiv dmenu wget fish ranger htop rofi wofi bpytop zsh neovim npm nodejs python-pipx kitty waybar swayfx spotify thorium-browser-bin firefox swaybg swaync python-pywal 
 
 git clone https://github.com/fruity-fkf/dott
 git clone https://github.com/fruity-fkf/fishy
