@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FKFs blog</title>
-    <link>https://fruity-fkf.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on FKFs blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 07 Apr 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://fruity-fkf.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tmux and Helix</title>
-      <link>https://fruity-fkf.github.io/posts/tmux-helix/</link>
+      <link>http://localhost:1313/posts/tmux-helix/</link>
       <pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>https://fruity-fkf.github.io/posts/tmux-helix/</guid>
+      <guid>http://localhost:1313/posts/tmux-helix/</guid>
       <description>HOIIIIIII !!!!!! Well I figured I&amp;rsquo;d put two Blogs into one article because it&amp;rsquo;d be easier and I needed to write longer stuff anyways ;-; Today I am writing about Helix and Tmux since I moved to Helix from Neovim despite writing an article about the editor a few days ago. BUTTTTT&amp;hellip; the same logic from that article applies to Helix And I use tmux and Helix at the same time for my workflow so I figured I&amp;rsquo;d write about them together :3</description>
     </item>
     <item>
       <title>About FKF</title>
-      <link>https://fruity-fkf.github.io/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>https://fruity-fkf.github.io/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description>HOIII I am FKF. Also known as Red panda, Red or just F.&#xA;I am a random 18 year old who&amp;rsquo;s interested in computers and stuff.&#xA;IDK what else to say about me.&#xA;You can contact me on discord the easiest.&#xA;My discord username(the @ thingy) is fkf (Yes I have a 3 letter tag&amp;hellip; insert image of flexing here)</description>
     </item>
     <item>
       <title>My views on Neovim and vi keybinds in general</title>
-      <link>https://fruity-fkf.github.io/posts/neovim/</link>
+      <link>http://localhost:1313/posts/neovim/</link>
       <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>https://fruity-fkf.github.io/posts/neovim/</guid>
+      <guid>http://localhost:1313/posts/neovim/</guid>
       <description>Hoi For all that don&amp;rsquo;t know what neovim is, It&amp;rsquo;s a fork/improved version of vim which means VI improved. Vim is a fork of the old VI editor. It was one of the two big players in the editor wars of the ancient times. read this if you want to know more about the editor wars.&#xA;So&amp;hellip;.It&amp;rsquo;s a fork of a fork of a code editor from the 1970s&amp;hellip; You might be wondering why the fuck we use it instead of something &amp;ldquo;Modern&amp;rdquo; like VS code or the jetbrains IDEs.</description>
     </item>
   </channel>
