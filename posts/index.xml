@@ -5,8 +5,54 @@
 		<description>Recent content in Posts on FKFs blog</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
-		<lastBuildDate>Wed, 03 Apr 2024 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 07 Apr 2024 00:00:00 +0000</lastBuildDate>
 		<atom:link href="https://fruity-fkf.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Tmux and Helix</title>
+			<link>https://fruity-fkf.github.io/posts/tmux-helix/</link>
+			<pubDate>Sun, 07 Apr 2024 00:00:00 +0000</pubDate>
+			
+			<guid>https://fruity-fkf.github.io/posts/tmux-helix/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h1 id="hoiiiiiii-">HOIIIIIII !!!!!!</h1>
+<p>Well I figured I&rsquo;d put two Blogs into one article because it&rsquo;d be easier and I needed to write longer stuff anyways ;-;
+Today I am writing about Helix and Tmux since I moved to Helix from Neovim despite writing an article about the editor a few days ago.
+BUTTTTT&hellip; the same logic from that article applies to Helix
+And I use tmux and Helix at the same time for my workflow so I figured I&rsquo;d write about them together :3</p>
+<h2 id="what-is-tmux">What is Tmux?</h2>
+<p>&ndash;</p>
+<p>Well&hellip;. Tmux is a terminal Multiplexer.
+It basically Allows you to have multiple sessions inside a terminal.
+Tmux is a tool that helps you manage multiple terminal windows in one.
+It lets you split your screen, switch between different tasks, and even keeps things running when you close your terminal.
+It&rsquo;s handy for people who work a lot in the command line and need to work on a bunch of stuff at once.
+So imagine running multiple terminal windows&hellip;But they&rsquo;re all virtual and you can control all of them inside a single Terminal.</p>
+<h2 id="why-tmux">WHY tmux??</h2>
+<p>Well it all boils down to efficiency and workflow..
+Especially if you work from a terminal window most of the time using a terminal based editor.
+AND ESPECIALLY if you want to use something like a TWM from a desktop envirorment.
+And you can get your session back if you close your terminal by accident. Imagine this&hellip; You are writing an important bit of code&hellip;but you accidentally close your terminal window.
+You can just type <code>tmux-attach</code> and get back to working like nothing happened&hellip; (it saved my life on multiple occasions).</p>
+<h2 id="how-do-i-get-started-with-tmux">How do I get started with tmux?</h2>
+<p>Well hopefully I will drop a guide within a few days so&hellip;.uh&hellip;.yeah</p>
+<p><img alt="OSAKER" src="https://i.kym-cdn.com/photos/images/original/002/626/186/d86"></p>
+<h2 id="helixwhat-is-it">Helix&hellip;what is it?</h2>
+<p>Well Helix is a code editor that <em>technically</em> uses the vim/neovim keybinds but a more (I will get lots of hate for it) better and improved version of that.
+<a href="https://cheatography.com/hiddenmonkey/cheat-sheets/helix/">The helix keybinds</a> feel&hellip;more refined.. So you get the feel of Vim but in a more refined and modern package.</p>
+<h3 id="best-of-all-it-is-zero-conf">BEST OF ALL IT IS ZERO CONF</h3>
+<p>You don&rsquo;t have to set up LSPs or anything else.
+It has the LSP stuff pre configured and a Telescope like plugin thingy built in along with a thing similar to the Which-key plugin.
+So you can just install it and start working on your projects.
+And it is written in rust&hellip;which I don&rsquo;t care about but a lot of y&rsquo;all seem to get crazy about stuff being rust based.
+And the default keybindings are VERY good</p>
+<p>IDK what else to say.
+It is great
+as shrimple as that
+try helix</p>
+<p><img alt="SATA ANDAGI" src="https://i.kym-cdn.com/photos/images/original/002/534/865/2ab"></p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>My views on Neovim and vi keybinds in general</title>
