@@ -6,8 +6,15 @@
     <description>Recent content on FKFs blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 07 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Apr 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://fruity-fkf.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tmux Tutorial Pt. 1</title>
+      <link>https://fruity-fkf.github.io/posts/tmux-tutorial/</link>
+      <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://fruity-fkf.github.io/posts/tmux-tutorial/</guid>
+      <description>HOIII So this is the tmux tutorial I promised last time :3 . In this tutorial I will show y&amp;rsquo;all how to set up tmux and use it in an effective and productive way&amp;hellip;. At least that&amp;rsquo;s what I hope will happen.. So let&amp;rsquo;s begin.&#xA;Installation and starting Install tmux&amp;hellip; IDK what distro/os you are on(hopefully arch) but it should be in the package repos in your distro package manager. Try running tmux for the first time by running the tmux command in a terminal.</description>
+    </item>
     <item>
       <title>Tmux and Helix</title>
       <link>https://fruity-fkf.github.io/posts/tmux-helix/</link>

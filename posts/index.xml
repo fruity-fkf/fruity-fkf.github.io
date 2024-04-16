@@ -5,8 +5,97 @@
 		<description>Recent content in Posts on FKFs blog</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
-		<lastBuildDate>Sun, 07 Apr 2024 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 16 Apr 2024 00:00:00 +0000</lastBuildDate>
 		<atom:link href="https://fruity-fkf.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Tmux Tutorial Pt. 1</title>
+			<link>https://fruity-fkf.github.io/posts/tmux-tutorial/</link>
+			<pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
+			
+			<guid>https://fruity-fkf.github.io/posts/tmux-tutorial/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h1 id="hoiii">HOIII</h1>
+<hr>
+<p>So this is the tmux tutorial I promised last time :3 .
+In this tutorial I will show y&rsquo;all how to set up tmux and use it in an effective and productive way&hellip;.
+At least that&rsquo;s what I hope will happen..
+So let&rsquo;s begin.</p>
+<h3 id="installation-and-starting">Installation and starting</h3>
+<p>Install tmux&hellip; IDK what distro/os you are on(hopefully arch) but it should be in the package repos in your distro package manager.
+Try running tmux for the first time by running the <code>tmux</code> command in a terminal.
+It&rsquo;ll drop you into an <em>almost</em> normal looking shell instance with your default shell with one major difference.
+The green bar at the bottom (or at least for my terminal it&rsquo;s green).
+That means tmux has started.
+You can try using the terminal as usual.</p>
+<h3 id="default-keys">Default keys</h3>
+<p>The default keybinds for Tmux are a bit&hellip;odd and just painful to use
+But we will change that later ;)
+Lets try using the defaults first to get a hang of things
+In tmux every keybind first needs to be started with the prefix key.
+The default prefix key is ctrl + b
+If you press control + b then press the % key you will see something wonderful happen&hellip; A horizontal split!!!
+You can use it like a regular terminal session and whatnot.
+And when you want to return back to the previous pane you just press the prefix key again then the left arrow key.
+Your focus/cursor will move back to the other pane.
+You can open as many panes as you want like that. And if you want vertical panes then you just have to press the prefix key then the <code>&quot;</code> key.
+If you have previously used the i3 window manager or sway window manager then it will feel very familiar to you.</p>
+<h3 id="plugins-and-configuration">Plugins and configuration</h3>
+<p>You might be annoyed by the painful and inefficient keybinds at this point. And so we can start working on upgrading the state of our tmux setup with plugins.
+To install plugins you can do two things. Manually install them by cloning the repos or using a plugin manager.
+Any sane person will choose the 2nd option. Luckily for us tmux has a great plugin manager called <a href="https://github.com/tmux-plugins/tpm">TPM</a> .
+But first we need to set up a config file for tmux. The config file for tmux is usually in the home directory. The filename is <code>.tmux.conf</code>
+Just open a terminal and go to the home directory if you aren&rsquo;t already there for some reason. Then run this command <code>touch .tmux.conf</code> . It&rsquo;ll create the config file.
+Open up the config file with any code editor you want and paste this in:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">## enable mouse for ease of use if needed</span>
+</span></span><span style="display:flex;"><span>set-g mouse on
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#sets the prefix key to ctrl + space key ...change it to anything you want like C-s for ctrl+s</span>
+</span></span><span style="display:flex;"><span>set -g prefix C-space
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## &#34;sane&#34; keybinds for horizontal and vertical splits</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bind v split-window -v -c <span style="color:#e6db74">&#34;#{pane_current_path}&#34;</span>
+</span></span><span style="display:flex;"><span>bind h split-window -h -c <span style="color:#e6db74">&#34;#{pane_current_path}&#34;</span>
+</span></span></code></pre></div><p>For now these are enough. They change the most important keybinds to more sane and ergonomic keys (for me at least).
+Run tmux again and try out the changed keybinds and change/modify them as needed. :3</p>
+<p>As for plugins go to the TPM github page. Then read through the docs to know how to install it.
+Or just do what I say in this guide.
+Clone TPM to the needed folder with this command. Just copy and paste and it should work.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+</span></span></code></pre></div><p>It will put TPM in the config folder for tmux.
+Now put this into the tmux config file to enable TPM.</p>
+<pre tabindex="0"><code>set -g @plugin &#39;tmux-plugins/tpm&#39;
+set -g @plugin &#39;tmux-plugins/tmux-sensible&#39;
+run &#39;~/.tmux/plugins/tpm/tpm&#39;
+</code></pre><p>Now lets install some plugins.</p>
+<p>Note: All plugins must be declared before the line for enabling TPM.</p>
+<p>First thing I would suggest getting is the <a href="https://github.com/sainnhe/tmux-fzf">tmux-fzf</a> plugin.
+It allows you to do a A LOT of stuff via FZF such as:</p>
+<ul>
+<li>Manage sessions</li>
+<li>Manage windows</li>
+<li>Manage panes</li>
+<li>Search commands and append to command prompt.</li>
+<li>Search key bindings and execute.</li>
+<li>Search clipboard history and paste to current window.</li>
+<li>Process management (top, pstree, terminate, kill, interrupt, continue, stop, quit, hangup).</li>
+<li>User menu (run custom commands).</li>
+<li>Preview sessions, windows and panes.</li>
+<li>Multiple selection</li>
+</ul>
+<p>so to install this plugin you just add</p>
+<pre tabindex="0"><code>set -g @plugin &#39;sainnhe/tmux-fzf&#39;
+</code></pre><p>before the <code>run '~/.tmux/plugins/tpm/tpm'</code>
+You can install any/most plugins like that.
+Just add a <code>set -g @plugin 'git-shortcode'</code> <strong>BEFORE</strong> the ``run &lsquo;~/.tmux/plugins/tpm/tpm&rsquo;.
+Well it doesn&rsquo;t install it just <em>yet</em>. You need to open tmux. Then run the prefix key. Then press I (shift + i).
+The plugin will be installed and the config will be reloaded.
+Now run the prefix key + F (shift + f) and it should show you the plugin window where you can do stuff</p>
+<h3 id="bai-bai">BAI BAI</h3>
+<p>This is a two part tutorial series so I am going for now.</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Tmux and Helix</title>
