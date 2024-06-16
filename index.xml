@@ -6,8 +6,15 @@
     <description>Recent content on FKFs blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 16 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Jun 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://fruity-fkf.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NoteVim</title>
+      <link>https://fruity-fkf.github.io/posts/notevim/</link>
+      <pubDate>Sun, 16 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>https://fruity-fkf.github.io/posts/notevim/</guid>
+      <description>WTF is this? So I wanted a piece of software that was designed specifically for note taking. I wanted it to have neovim keybinds.&#xA;My requirements were&#xA;Full Neovim keybinds support (They are simply better as shrimple as that) Fully customizable. Lightweight. Able to support markdown for compatibility Full compatibility with obsidian to sync with my phone or windows laptop. Lightweight as in minimal startup time. So&amp;hellip;.out of the bat most markdown note taking softwares were out of the question since they didn&amp;rsquo;t have neovim keybinds.</description>
+    </item>
     <item>
       <title>Tmux Tutorial Pt. 1</title>
       <link>https://fruity-fkf.github.io/posts/tmux-tutorial/</link>

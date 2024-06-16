@@ -5,8 +5,41 @@
 		<description>Recent content in Posts on FKFs blog</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en</language>
-		<lastBuildDate>Tue, 16 Apr 2024 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 16 Jun 2024 00:00:00 +0000</lastBuildDate>
 		<atom:link href="https://fruity-fkf.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>NoteVim</title>
+			<link>https://fruity-fkf.github.io/posts/notevim/</link>
+			<pubDate>Sun, 16 Jun 2024 00:00:00 +0000</pubDate>
+			
+			<guid>https://fruity-fkf.github.io/posts/notevim/</guid>
+			<description><![CDATA[%!s(<nil>)]]></description>
+			<content type="html"><![CDATA[<h1 id="wtf-is-this">WTF is this?</h1>
+<hr>
+<p>So I wanted a piece of software that was designed specifically for note taking. I wanted it to have neovim keybinds.</p>
+<p>My requirements were</p>
+<ul>
+<li>Full Neovim keybinds support (They are simply better as shrimple as that)</li>
+<li>Fully customizable.</li>
+<li>Lightweight.</li>
+<li>Able to support markdown for compatibility</li>
+<li>Full compatibility with obsidian to sync with my phone or windows laptop.</li>
+<li>Lightweight as in minimal startup time.</li>
+</ul>
+<p>So&hellip;.out of the bat most markdown note taking softwares were out of the question since they didn&rsquo;t have neovim keybinds.</p>
+<p>Then I looked at the ones that support it( there were two ). Neither joplin or Obsodian could support it &ldquo;properly&rdquo;. So the only thing I was left with was&hellip;&hellip; neovim 😐&hellip;.</p>
+<p>Yeah..</p>
+<p>Luckily the youtuber <a href="https://www.youtube.com/watch?v=5ht8NYkU9wQ&amp;t=7s">DevOps Toolbox made this video</a></p>
+<p>So from there I got the idea to make this Neovim config/distro/idk tbh&hellip;.</p>
+<p>You can find it in <a href="https://github.com/fruity-fkf/Notevim">This repository</a></p>
+<p>I&rsquo;m using the <a href="https://github.com/epwalsh/obsidian.nvim">obsidian plugin from the video</a> to emulate Obsidians functionality.</p>
+<p>This feels especially good for note taking when you use it with <a href="https://github.com/neovide/neovide">neovide</a>&hellip;.I plan on making a blog on that soon hopefully :3</p>
+<p>I plan on making a proper blog on it later but yeah&hellip;</p>
+<p>pai pai</p>
+<p><img src="https://tenor.com/view/azumanga-daioh-bye-bye-osaka-yukari-gif-5548292245461129668" alt="sata andagi"></p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Tmux Tutorial Pt. 1</title>
@@ -125,7 +158,7 @@ And you can get your session back if you close your terminal by accident. Imagin
 You can just type <code>tmux-attach</code> and get back to working like nothing happened&hellip; (it saved my life on multiple occasions).</p>
 <h2 id="how-do-i-get-started-with-tmux">How do I get started with tmux?</h2>
 <p>Well hopefully I will drop a guide within a few days so&hellip;.uh&hellip;.yeah</p>
-<p><img alt="OSAKER" src="https://i.kym-cdn.com/photos/images/original/002/626/186/d86"></p>
+<p><img src="https://i.kym-cdn.com/photos/images/original/002/626/186/d86" alt="OSAKER"></p>
 <h2 id="helixwhat-is-it">Helix&hellip;what is it?</h2>
 <p>Well Helix is a code editor that <em>technically</em> uses the vim/neovim keybinds but a more (I will get lots of hate for it) better and improved version of that.
 <a href="https://cheatography.com/hiddenmonkey/cheat-sheets/helix/">The helix keybinds</a> feel&hellip;more refined.. So you get the feel of Vim but in a more refined and modern package.</p>
@@ -139,7 +172,7 @@ And the default keybindings are VERY good</p>
 It is great
 as shrimple as that
 try helix</p>
-<p><img alt="SATA ANDAGI" src="https://i.kym-cdn.com/photos/images/original/002/534/865/2ab"></p>
+<p><img src="https://i.kym-cdn.com/photos/images/original/002/534/865/2ab" alt="SATA ANDAGI"></p>
 ]]></content>
 		</item>
 		
@@ -156,7 +189,7 @@ try helix</p>
 And that may be a valid question. And it has a simple answer as well. Simply put&hellip;</p>
 <h2 id="the-vi-keybinds-are-simply-better-everything-else-is-trash-and-if-you-disagree-then-stfu-bitch">The VI keybinds are simply better everything else is trash and if you disagree then stfu bitch.</h2>
 <p>The VI keybinds are a bit(well bit is an understatement)&hellip;..hard to learn/master or even remember.
-<img alt="image of the vi keys" src="https://preview.redd.it/neovim-cheat-sheet-v0-vmyvqrxi2e4c1.png?width=1080&crop=smart&auto=webp&s=ddfa65ee292fb9d7598774ccabb145d76ce132a4">
+<img src="https://preview.redd.it/neovim-cheat-sheet-v0-vmyvqrxi2e4c1.png?width=1080&amp;crop=smart&amp;auto=webp&amp;s=ddfa65ee292fb9d7598774ccabb145d76ce132a4" alt="image of the vi keys">
 BUTTTTTT&hellip;
 they&rsquo;re extremely extremely powerful.
 I can absolutely gurantee you&rsquo;ll be at least 50% faster when writing or refractoring or modifying code or any text file really.</p>
