@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on FKF&#39;s blog</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on FKF&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My (moderately small) journey with Org mode</title>
+      <link>http://localhost:1313/posts/first/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/first/</guid>
+      <description>So I recently randomly decided to try to use Emacs for my note taking because I heard a lot of good things about the org mode.&#xA;And holy fucking fuck Org mode is amazing to say the least. It is more robust than markdown due to supporting much much more feature wise. Also the Emacs editor itself is also just a pleasure to work with( with Evil AKA vim key bindings of course since I don&amp;#39;t want to fucking destroy my fingers ).</description>
+    </item>
+  </channel>
+</rss>
