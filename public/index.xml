@@ -8,6 +8,13 @@
     <language>en</language>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>FKF’s about info</title>
+      <link>http://localhost:1313/_about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/_about/</guid>
+      <description>Hoi I Am FKF.&#xA;I&amp;#39;m a random 19 year old programmer.&#xA;Uhh…..IDK what else to say……&#xA;I like music…..but I suppose most people do. Though my taste in music is a bit…odd to say the least.&#xA;I do like to read though. Mainly fiction…. I also like to read Korean comic books AKA Manhwas. Though nowadays I don&amp;#39;t really have the time to read because I am busy often.</description>
+    </item>
+    <item>
       <title>My (moderately small) journey with Org mode</title>
       <link>http://localhost:1313/posts/first/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
