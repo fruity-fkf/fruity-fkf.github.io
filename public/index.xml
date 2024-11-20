@@ -2,30 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AAAAA on FKF&#39;s blog</title>
-    <link>http://localhost:1313/</link>
+    <link>https://fruity-fkf.github.io/</link>
     <description>Recent content in AAAAA on FKF&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fruity-fkf.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A quick overview of the tools I use in general</title>
+      <link>https://fruity-fkf.github.io/about/_about-tools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://fruity-fkf.github.io/about/_about-tools/</guid>
+      <description>HOI So this is just a small list of things I use in my daily life…. I don&amp;#39;t really use the computer to game much so IDK what to put in as my gaming software.&#xA;I mainly write my code in the terminal with either neovim or helix (Shoutout silt) or Emacs for taking notes and such. In fact this site was made using Org mode!&#xA;I have a pretty good Neovim config I am proud of.</description>
+    </item>
     <item>
       <title>FKF’s about info</title>
-      <link>http://localhost:1313/_about/</link>
+      <link>https://fruity-fkf.github.io/_about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/_about/</guid>
+      <guid>https://fruity-fkf.github.io/_about/</guid>
       <description>Hoi I Am FKF.&#xA;I&amp;#39;m a random 19 year old programmer.&#xA;Uhh…..IDK what else to say……&#xA;I like music…..but I suppose most people do. Though my taste in music is a bit…odd to say the least.&#xA;I do like to read though. Mainly fiction…. I also like to read Korean comic books AKA Manhwas. Though nowadays I don&amp;#39;t really have the time to read because I am busy often.</description>
     </item>
     <item>
       <title>FKF’s about info</title>
-      <link>http://localhost:1313/about/_about/</link>
+      <link>https://fruity-fkf.github.io/about/_about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/_about/</guid>
+      <guid>https://fruity-fkf.github.io/about/_about/</guid>
       <description>Hoi I Am FKF.&#xA;I&amp;#39;m a random 19 year old programmer.&#xA;Uhh…..IDK what else to say……&#xA;I like music…..but I suppose most people do. Though my taste in music is a bit…odd to say the least.&#xA;I do like to read though. Mainly fiction…. I also like to read Korean comic books AKA Manhwas. Though nowadays I don&amp;#39;t really have the time to read because I am busy often.</description>
     </item>
     <item>
       <title>My (moderately small) journey with Org mode</title>
-      <link>http://localhost:1313/posts/first/</link>
+      <link>https://fruity-fkf.github.io/posts/first/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/first/</guid>
+      <guid>https://fruity-fkf.github.io/posts/first/</guid>
       <description>So I recently randomly decided to try to use Emacs for my note taking because I heard a lot of good things about the org mode.&#xA;And holy fucking fuck Org mode is amazing to say the least. It is more robust than markdown due to supporting much much more feature wise. Also the Emacs editor itself is also just a pleasure to work with( with Evil AKA vim key bindings of course since I don&amp;#39;t want to fucking destroy my fingers ).</description>
     </item>
   </channel>
