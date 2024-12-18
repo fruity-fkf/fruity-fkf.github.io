@@ -1,99 +1,82 @@
 baseURL = "https://fruity-fkf.github.io"
-theme = "risotto"
 title = "FKF's blog"
-author = "FKF"
-# copyright = "© [Joe Roe](https://joeroe.io) & [risotto contributors](https://github.com/joeroe/risotto/graphs/contributors)."
-paginate = 3
 languageCode = "en"
 DefaultContentLanguage = "en"
-enableInlineShortcodes = true
-# prevent build failures when using Hugo's Instagram shortcode due to deprecated Instagram API.
-# See https://github.com/gohugoio/hugo/issues/7228#issuecomment-714490456
+theme = "Hugo-Gruvbox-Theme"
 ignoreErrors = ["error-remote-getjson"]
-
-# Automatically add content sections to main menu
-sectionPagesMenu = "main"
-
-[params]
-noindex = false
-
-[params.theme]
-palette = "tokyo-night-dark"
-
-# Sidebar: about/bio
 [params.about]
 title = "FKF's blog"
 description = "FKF's silly little blog where it writes silly little articles and rants :3"
-# unicode/emoji logo:
-logo = "🍚"
-# or use an image:
-#logo_image = "images/rice.svg"
+copyright = "nuh uh copyrights are kinda cringe"
+pagination.pagerSize = 5
+enableRobotsTXT = true
+[params.author]
+name = "FKF"
+email = "fkf.6106@gmail.com"
 
-# Sidebar: social links
-# Available icon sets:
-# * FontAwesome 6 <https://fontawesome.com/> ('fa-brands', 'fa-normal', or 'fa-solid' for brands)
-# * Academicons <https://jpswalsh.github.io/academicons> ('ai ai-')
+[params]
+    enableRelatedPosts = false
+    relatedPostsNumber = 2
+    #For Utterances Comments Feature - need to add repo
+#Main Menu (below header)
+[[menu.main]]
+name = "Home"
+url = "/index"
+weight = 1
 
-[[params.socialLinks]]
-icon = "fa-brands fa-github"
-title = "GitHub"
+[[menu.main]]
+name = "All Posts"
+url = "/posts"
+weight = 2
+
+# [[menu.main]]
+# name = "Tags"
+# url = "/tags"
+# weight = 3
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 4
+
+
+# [[menu.footer]]
+# name = "PrivacyPolicy"
+# url = "/privacypolicy"
+# weight = 2
+#
+# Social Media Links (in header)
+# Uses feather icons (search icon names on the site)
+[[params.social]]
+name = "Github"
+icon = "github"
 url = "https://github.com/fruity-fkf"
+#enable tags
+# [taxonomies]
+#   tag = "tags"
 
-[[params.socialLinks]]
-icon = "fa-solid fa-envelope"
-title = "Email"
-url = "mailto:fruity-fkf@proton.me"
-
-
-[menu]
-
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about/"
-    weight = 10
-
-[taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
-
-# For hugo >= 0.60.0, enable inline HTML
-[markup.goldmark.renderer]
-unsafe = true
-
+# allow raw HTML
 [markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
-  # Table of contents
-  # Add toc = true to content front matter to enable
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel   = 3
-    ordered    = true
+# Syntax Highlighting
+pygmentsUseClasses = true
+pygmentsCodefences = true
+[markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    tabWidth = 4
+    noClasses = false
 
-[privacy]
+# Table of content depth and list type
+[markup.tableOfContents]
+  endLevel = 4
+  ordered = false
+  startLevel = 2
 
-  [privacy.vimeo]
-    disabled = false
-    simple = true
-
-  [privacy.twitter]
-    disabled = false
-    enableDNT = true
-    simple = true
-
-  [privacy.instagram]
-    disabled = false
-    simple = true
-
-  [privacy.youtube]
-    disabled = false
-    privacyEnhanced = true
-
-[services]
-
-  [services.instagram]
-    disableInlineCSS = true
-
-  [services.twitter]
-    disableInlineCSS = true

@@ -2,24 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Abouts on FKF&#39;s blog</title>
-    <link>https://fruity-fkf.github.io/about/</link>
+    <link>http://localhost:1313/about/</link>
     <description>Recent content in Abouts on FKF&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="https://fruity-fkf.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>fkf.6106@gmail.com (FKF)</managingEditor>
+    <webMaster>fkf.6106@gmail.com (FKF)</webMaster>
+    <atom:link href="http://localhost:1313/about/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A quick overview of the tools I use in general</title>
-      <link>https://fruity-fkf.github.io/about/_about-tools/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://fruity-fkf.github.io/about/_about-tools/</guid>
-      <description>HOI So this is just a small list of things I use in my daily life…. I don&amp;#39;t really use the computer to game much so IDK what to put in as my gaming software.&#xA;I mainly write my code in the terminal with either neovim or helix (Shoutout silt) or Emacs for taking notes and such. In fact this site was made using Org mode!&#xA;I have a pretty good Neovim config I am proud of.</description>
+      <link>http://localhost:1313/about/_about-tools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>fkf.6106@gmail.com (FKF)</author>
+      <guid>http://localhost:1313/about/_about-tools/</guid>
+      <description>&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;&#xA;&lt;h2 id=&#34;headline-1&#34;&gt;&#xA;HOI&#xA;&lt;/h2&gt;&#xA;&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;&#xA;&lt;p&gt;So this is just a small list of things I use in my daily life…. I don&amp;#39;t really use the computer to game much so IDK what to put in as my gaming software.&lt;/p&gt;&#xA;&lt;p&gt;&#xA;I mainly write my code in the terminal with either neovim or helix (Shoutout silt) or Emacs for taking notes and such. In fact this site was made using Org mode!&lt;/p&gt;&#xA;&lt;p&gt;&#xA;I have a pretty good Neovim config I am proud of. &lt;a href=&#34;https://github.com/fruity-fkf/nvim&#34;&gt;Here&amp;#39;s the link to that&lt;/a&gt;. I put a &lt;strong&gt;LOT&lt;/strong&gt; of time into making that ;-;&lt;/p&gt;</description>
     </item>
     <item>
       <title>FKF’s about info</title>
-      <link>https://fruity-fkf.github.io/about/_about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://fruity-fkf.github.io/about/_about/</guid>
-      <description>Hoi I Am FKF.&#xA;I&amp;#39;m a random 19 year old programmer.&#xA;Uhh…..IDK what else to say……&#xA;I like music…..but I suppose most people do. Though my taste in music is a bit…odd to say the least.&#xA;I do like to read though. Mainly fiction…. I also like to read Korean comic books AKA Manhwas. Though nowadays I don&amp;#39;t really have the time to read because I am busy often.</description>
+      <link>http://localhost:1313/about/_about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>fkf.6106@gmail.com (FKF)</author>
+      <guid>http://localhost:1313/about/_about/</guid>
+      <description>&lt;p&gt;&#xA;Hoi I Am FKF.&lt;/p&gt;&#xA;&lt;p&gt;&#xA;I&amp;#39;m a random 19 year old programmer.&lt;/p&gt;&#xA;&lt;p&gt;&#xA;Uhh…..IDK what else to say……&lt;/p&gt;&#xA;&lt;p&gt;&#xA;I like music…..but I suppose most people do. Though my taste in music is a bit…odd to say the least.&lt;/p&gt;&#xA;&lt;p&gt;&#xA;I do like to read though. Mainly fiction…. I also like to read Korean comic books AKA Manhwas. Though nowadays I don&amp;#39;t really have the time to read because I am busy often.&lt;/p&gt;&#xA;&lt;p&gt;&#xA;I do like to write code as much as possible. Mainly low level languages like C (C++ is a vile abomination).&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
