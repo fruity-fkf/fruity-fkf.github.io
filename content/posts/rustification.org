@@ -1,5 +1,6 @@
 #+title: A fresh begining with rust
 #+draft: false
+#+date: 2024-12-12
 * Hoi..
 
 ** How did we get here....
