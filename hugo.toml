@@ -1,16 +1,15 @@
-baseURL = "https://fruity-fkf.github.io"
+[params]
+enableRelatedPosts = false
+relatedPostsNumber = 2
+
+
 title = "FKF's blog"
 languageCode = "en"
 DefaultContentLanguage = "en"
 theme = "Hugo-Gruvbox-Theme"
 pagination.pagerSize = 5
 enableRobotsTXT = true
-
-[params]
-enableRelatedPosts = false
-relatedPostsNumber = 2
-
-
+baseURL = "https://fruity-fkf.github.io"
 [params.about]
 title = "FKF's blog"
 description = "FKF's silly little blog where it writes silly little articles and rants :3"
@@ -27,10 +26,10 @@ name = "All Posts"
 url = "/posts"
 weight = 2
 
-# [[menu.main]]
-# name = "Tags"
-# url = "/tags"
-# weight = 3
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 3
 
 [[menu.main]]
 name = "About"
