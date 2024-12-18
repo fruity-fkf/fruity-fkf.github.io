@@ -1,35 +1,37 @@
-[params]
-enableRelatedPosts = false
-relatedPostsNumber = 2
-
-
+baseURL = "https://fruity-fkf.github.io"
 title = "FKF's blog"
 languageCode = "en"
 DefaultContentLanguage = "en"
 theme = "Hugo-Gruvbox-Theme"
-pagination.pagerSize = 5
-enableRobotsTXT = true
-baseURL = "https://fruity-fkf.github.io"
 [params.about]
 title = "FKF's blog"
 description = "FKF's silly little blog where it writes silly little articles and rants :3"
 copyright = "nuh uh copyrights are kinda cringe"
-
-
+pagination.pagerSize = 5
+enableRobotsTXT = true
 [params.author]
 name = "FKF"
 email = "fkf.6106@gmail.com"
 
+[params]
+    enableRelatedPosts = false
+    relatedPostsNumber = 2
+    #For Utterances Comments Feature - need to add repo
+# #Main Menu (below header)
+# [[menu.main]]
+# name = "Home"
+# url = "/"
+# weight = 1
 
 [[menu.main]]
 name = "All Posts"
 url = "/posts"
 weight = 2
 
-[[menu.main]]
-name = "Home"
-url = "/"
-weight = 3
+# [[menu.main]]
+# name = "Tags"
+# url = "/tags"
+# weight = 3
 
 [[menu.main]]
 name = "About"
