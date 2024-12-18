@@ -1,5 +1,6 @@
 #+title: My (moderately small) journey with Org mode
 
+#+draft: false
 
 So I recently randomly decided to try to use Emacs for my note taking because I heard a lot of good things about the org mode.
 
@@ -17,6 +18,7 @@ Emacs is honestly like a small operating system. You can have an unholy amount o
 
 Though configuring emacss is a fucking pain in the ass. I tried to write my own config after using doom emacs for a while but then realized how painful it was. The debug/warning info for when something goes wrong in your config is basically nonexistent. The documentation of plugins is an extreme pain in the ass to find. And the plugin manager system isn't as robust as Neovim in my opinion.
 Yesterday when I tried to write my own config I tried 3 different plugins with each having their own random issues which was just annoying to say the least but not only that the community behind emacs feels a bit small compared to neovim in my opinion due to the current sudden rise in popularity. Which is kinda valid due because just look at how far terminals have come.. They have more bling than some GUIs. But there still exists a community of emacs users I guess. It's just a shame people don't experience the joy of writing stuff in ORG mode.
+
 Now....back to my configuration journey...
 
 I tried plugin managers and then settled on melpa which was suggested by my homie headset. Then I followed along with distrotubes tutorial series on configuring emacs.
