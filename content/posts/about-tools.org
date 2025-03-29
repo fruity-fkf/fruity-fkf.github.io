@@ -1,6 +1,6 @@
 #+TITLE: A quick overview of the tools I use in general
 #+DRAFT: false
-#+DATE: [2016-09-01 jue 16:00]
+#+DATE: [2024-09-04 jue 16:00]
 HOI
 So this is just a small list of things I use in my daily life.... I don't really use the computer to game much so IDK what to put in as my gaming software.
 
