@@ -5,7 +5,21 @@
     <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on FKF&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-gb</language><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-gb</language>
+    <lastBuildDate>Thu, 01 Sep 2016 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A quick overview of the tools I use in general</title>
+      <link>http://localhost:1313/posts/about-tools/</link>
+      <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/about-tools/</guid>
+      
+      <description>HOI So this is just a small list of things I use in my daily life…. I don&amp;#39;t really use the computer to game much so IDK what to put in as my gaming software.
+I mainly write my code in the terminal with either neovim or helix (Shoutout silt) or Emacs for taking notes and such. In fact this site was made using Org mode!
+I have a pretty good Neovim config I am proud of.</description>
+      
+    </item>
+    
     <item>
       <title>A fresh begining with rust</title>
       <link>http://localhost:1313/posts/rustification/</link>
@@ -28,19 +42,6 @@ Then something weird happened. I saw a No boilerplate video where they made a ru
       
       <description>A guide to making a small Gnu or busybox based linux distro from scratch because people seem to think it is too hard.
 Why? The typical linux neckbeard stereotype ranking goes Arch then gentoo and then LFS(even though arch has become a &amp;#34;normie distro&amp;#34; due to the fact that the archinstall script now exists). There is an assumption that LFS is hard to build and configure. Well it is kinda true but also not really since the complexity only happens when you need to do some advanced configuration.</description>
-      
-    </item>
-    
-    <item>
-      <title>A quick overview of the tools I use in general</title>
-      <link>http://localhost:1313/posts/about-tools/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/posts/about-tools/</guid>
-      
-      <description>HOI So this is just a small list of things I use in my daily life…. I don&amp;#39;t really use the computer to game much so IDK what to put in as my gaming software.
-I mainly write my code in the terminal with either neovim or helix (Shoutout silt) or Emacs for taking notes and such. In fact this site was made using Org mode!
-I have a pretty good Neovim config I am proud of.</description>
       
     </item>
     
