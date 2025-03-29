@@ -1,7 +1,8 @@
 #+title: A fresh begining with rust
 
 #+draft: false
-* Hoi..
+
+Hoi..
 
 ** How did we get here....
 

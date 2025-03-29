@@ -1,6 +1,7 @@
 #+title: A quick overview of the tools I use in general
 #+draft: false
-* HOI
+ 
+HOI
 So this is just a small list of things I use in my daily life.... I don't really use the computer to game much so IDK what to put in as my gaming software.
 
 I mainly write my code in the terminal with either neovim or helix (Shoutout silt) or Emacs for taking notes and such. In fact this site was made using Org mode!

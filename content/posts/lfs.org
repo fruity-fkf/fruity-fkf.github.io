@@ -1,0 +1,517 @@
+
+#+title: A guide to making a small Gnu or busybox based linux distro from scratch
+
+
+#+draft: false
+
+
+A guide to making a small Gnu or busybox based linux distro from scratch
+because people seem to think it is too hard.
+
+** Why?
+The typical linux neckbeard stereotype ranking goes Arch then gentoo and
+then LFS(even though arch has become a "normie distro" due to the fact
+that the archinstall script now exists). There is an assumption that LFS
+is hard to build and configure. Well it is /kinda/ true but also not
+really since the complexity only happens when you need to do some
+advanced configuration. But if you want to make a simple tty distro that
+works "good enough" then it is surprizingly easy. Easier than building
+gentoo at least. Somehow the main annoying part is cloning and gathering
+the repositories. But other than that everything else is surprizingly
+painless.
+
+** Thanks
+Special thanks to maplecircuit and their LFS tutorial series. I made
+this mainly inspired by them. Their vid helped me a LOT with the ncurses
+installation which I was having issues with since this is also my first
+time working with such a minimal system. Typically I use buildroot style
+systems. This was a fun experience NGL :3
+
+** Dependencies:
+For debian based systems:
+
+#+begin_src sh
+sudo apt install bc binutils bison dwarves flex gcc git gnupg2 gzip libelf-dev libncurses5-dev libssl-dev make openssl pahole perl-base rsync tar xz-utils autoconf gperf autopoint texinfo texi2html gettext gawk bzip2 qemu-system-x86 libtool
+#+end_src
+
+for Arch(btw) systems:
+
+#+begin_src sh
+sudo pacman -S bc binutils bison dwarves flex gcc git gnupg gzip elfutils ncurses openssl make pahole perl rsync tar xz autoconf gperf gettext gawk bzip2 qemu-base libtool texinfo
+#+end_src
+
+And for fellow fedora users:
+
+#+begin_src sh
+sudo dnf install bc binutils bison dwarves flex gcc git gnupg2 gzip elfutils-devel ncurses-devel openssl-devel make pahole perl rsync tar xz autoconf gperf gettext gawk bzip2 qemu-system-x86 libtool texinfo
+#+end_src
+
+#+begin_quote
+NOTE I used ChatGPT to convert the Fedora package list to debian and
+Arch versions. If the debian or arch copy paste doesn't work blame it
+not me. :3
+
+#+end_quote
+
+** The first phase:
+Setting up the file tree.
+
+First make a folder to put the project in. I recommend making it use git
+via =git init .= Now go ahead and in the project folder make a folder
+called root. It will be the root or =/= folder for our linux build. Now
+go into the root folder and make a few folders called =boot= =dev=
+=proc= =sys= and =usr=. You can make them all at once by running
+
+#+begin_src sh
+mkdir boot proc sys dev usr
+#+end_src
+
+now go into the usr folder.
+
+And in the folder make =bin, sbin, lib and lib64= folders.
+
+#+begin_src sh
+mkdir bin sbin lib lib64
+#+end_src
+
+now go back to the root folder. Now we need to link the folders to the
+root folder via symlinks. Because programs sometimes assume the files
+are in different directories.
+
+just copy paste this:
+
+#+begin_src sh
+ln -s usr/bin bin
+ln -s usr/sbin sbin
+ln -s usr/lib lib
+ln -s usr/lib64 lib64
+#+end_src
+
+it should look like this
+
+#+begin_example
+
+├── bin -> usr/bin
+├── boot
+├── dev
+├── etc
+├── lib -> usr/lib
+├── lib64 -> usr/lib64
+├── proc
+├── sbin -> usr/sbin
+├── sys
+├── usr
+└── var
+
+# Pro tip you can copy output from STDOUT (AKA piping) by using xsel --clipboard or xclip -selection clipboard
+# That's how I copied this diagram from the tree command 
+#+end_example
+
+** The second phase: setting up the the linux source kernel
+*** cloning the kernel
+There's a few ways to get the kernel. You can get it from kernel.org
+itself or git. I personally get it from the github repo of torvalds
+himself.
+
+First go up to the main folder of the project. Aka the folder that is
+above the =root folder= we've made. Now let's clone the repo.
+
+#+begin_src shell
+git clone --depth 1 https://github.com/torvalds/linux 
+#+end_src
+
+Or you can get a zip from the kernel site itself. It just bois down to
+personal preference put it in a directory . it will also act as our main
+project directory.
+
+*** Configuring the kernel
+:PROPERTIES:
+:CUSTOM_ID: configuring-the-kernel
+:END:
+Go ahead and run =make tinyconfig= to generate the smallest possible
+kernel that still compiles.I think it requires some dependencies but I
+am sure you'll figure them out. It will have absolutely no fucking use
+and can't do anything(kinda like you :3) Now we need to configure the
+kernel. It is surprizingly easy since there's a built in GUI/TUI
+configurator. run =make menuconfig= to open the configurator.
+
+First go down from the main page and enable 64 bit kernel.
+
+Next go to: General Config => Compile Standard kernel features => Enable
+support for PrintK for seeing the errors and stuff.
+
+Next go down back to the main menu. From there enable block layers.
+That's for storage devices.
+
+After that we need to enable binary file support. For that you need to
+scroll down to Executable File formats => Enable support for ELF
+binaries. And support for scripts starting with #! for running scripts.
+
+Now we need to add some features and drivers. IMO some of the settings
+shouldn't be in the drivers section but eh it is what it is.
+
+First of all enable PCI support. Now go down to generic driver options.
+From there enable tempfs in /dev . And enable automount for it too.
+
+Now then the serial ATA option for SATA should be enabled to use SATA
+drives which we need for storage. Now go into the option by pressing
+enter and scroll down to the option that starts with "Intel ESB" and has
+some random letters after that. I think that is the driver for the QEMU
+drives. Now we need SCSI support. So go back to the Device drivers page
+and go to SCSI device support => SCSI device support (Wow nice naming
+isn't it?). Now back out. Now we need to enable TTY to y'know talk to
+the device. go to device drivers => character devices and enable TTY.
+Now in Character devices go to serial drivers to enable communication
+via serial. IIRC it uses 8250 and 16550. (me forgor :c ) . Now enable
+console on the serial ports.
+
+Now go back to the home page and go to file systems. Enable ext4 or
+whatever you prefer. I'm going with ext4. Now scroll to Pseudo
+filesystems and inside there you need to enable sysfs and /proc.
+
+Honestly that's all we need for now. Now compile the binary by running
+==bash make -j8
+
+#+begin_example
+Replace 8 with how many cores you have. For example if you have 6 cores run `make -j6`Now place it in the main folder of the project for easy access
+```bash
+mv arch/x86/boot/bzImage ..
+#+end_example
+
+now we need to copy it to the boot folder in the root directory
+
+#+begin_src sh
+mv bzImage root/boot/
+#+end_src
+
+Now we're done doing silly things with the kernel for now. ## The
+userland and user tools. Userland refers to the tools and apps the user
+gets to use. For that we're going to install binutils, a shell and my
+fav text editor, vim.(well technically helix is better but
+y'know....harder to set up on a system made from scratch).
+
+First let's get a shell. I'm going with bash for now. Just paste in the
+command from the gnu website ( I added depth 1 because I don't need the
+extra git history crap :3)
+
+#+begin_src sh
+git clone --depth 1 https://git.savannah.gnu.org/git/bash.git
+#+end_src
+
+Now we need to compile it. make a folder in the project folder called
+bash-binary. That is where the binary of the bash build will be
+outputted. Now go to that folder and run the configuration command for
+building bash. Run
+
+#+begin_src sh
+../bash/configure --prefix=/usr
+#+end_src
+
+it tells us that we want bash to be set in a folder called /usr in the
+end. That will set up all the files needed to compile bash in the
+bash-binary folder. We will now compile the binary with the =make -j8=
+command (substitute 8 with how many cores you have) Now we need to
+install it to the root of the linux system we're making. run
+=bash  make DESTDIR=/home/user/lfs/root install= Replace =user= with
+your linux username and replace lfs with whatever name and place you
+used for the folder that the project is in. for me it was in the
+projects folder. So I ran
+
+#+begin_src sh
+make DESTDIR=/home/fkf/Projects/lfs/root install
+#+end_src
+
+So in theory we now should have bash installed. Now link it to the bin
+folder by going to root/bin and running
+
+#+begin_src sh
+ln -s bash sh
+#+end_src
+
+Now we need to move on to coreutils. There are two ways to do that. One
+is via GNU coreutils which will make it GNU/linux. Or you can just go
+and straight up use busybox which supplies you with most of the tools
+while being more lightweight and barebones. For this tutorial I'll use
+binutils but I'll also include how to use busybox as well :3 .
+
+First the bash method:
+
+Clone the binutils via
+
+#+begin_src sh
+git clone --depth 1 https://github.com/coreutils/coreutils
+#+end_src
+
+Now we need to make another build folder called binutils-building cd
+into the coreutils repo folder and run =./bootstrap= now go to the
+binutils-building folder.
+
+Now we want to configure the makefile. The process is similar to the
+method for bash. Run
+=bash  ../coreutils/configure --without-selinux --disable-libcap --prefix=/usr=
+We disabled selinux because this system we're building is not meant for
+deployment or anything that requires additional security. Thus we don't
+really need SELINUX. And honestly we don't need the additional graphical
+features of libcap so fuck that too. After that we use the same steps as
+installing bash.
+
+#+begin_src sh
+make -j8 
+make DESTDIR=/home/user/lfs/root install
+#+end_src
+
+Now we need util-linux mainly for the mount command.
+
+we can do a simple clone, autogen and install like the old stuff as
+usual
+
+#+begin_src sh
+git clone --depth 1 https://github.com/util-linux/util-linux
+
+mkdir build-util
+
+cd util-linux
+./autogen.sh
+cd ..
+cd build-util
+../util-linux/configure --disable-liblastlog2 --prefix=/usr
+
+make -j8
+make DESTDIR=/home/user/lfs/root install
+cd ..
+#+end_src
+
+** Libraries
+:PROPERTIES:
+:CUSTOM_ID: libraries
+:END:
+Now we need GNU libraries. they're pretty much required to run any
+dynamically linked library.
+
+Clone the repo
+
+#+begin_src sh
+git clone --depth 1 https://sourceware.org/git/glibc
+#+end_src
+
+Make a build folder and cd there
+
+#+begin_src sh
+mkdir build-glibc
+cd build-glibc
+#+end_src
+
+Now we need to configure it. We'll specify the lib folder and the usr
+prefix
+
+#+begin_src sh
+../glibc/configure --libdir=/lib --prefix=/usr
+#+end_src
+
+Now make and installl
+
+#+begin_src sh
+make -j8
+make DESTDIR=/home/user/lfs/root install
+#+end_src
+
+now check the lib64 folder to make sure they installed
+
+Now we need ncurses for bash. Because For some dumb reason bash isn't
+statically linked to ncurses. ;-;
+
+First yoink ncurses from GNU ftps
+
+#+begin_src sh
+wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.5.tar.gz
+
+tar -xvzf ncurses-6.5.tar.gz
+# note: For me 6.4 works better though I highly reccomend 6.5 for others
+#+end_src
+
+next do the usual build folder, configure crap
+
+#+begin_src sh
+mkdir buiild-ncurses
+
+cd buiild-ncurses
+../ncurses-6.5/configure --with-shared --with-termlib --enable-widec --with-versioned-syms --prefix=/usr
+
+make -j8
+make DESTDIR=/home/user/lfs/root install
+#+end_src
+
+now go to the root directory
+
+and then link the wide char libs (the ones that end with w) to the
+regular ones
+
+#+begin_src sh
+ln -s libncursesw.so.6 lib/libncurses.so.6
+ln -s libtinfow.so.6 lib/libtinfo.so.6
+#+end_src
+
+now we need to tweak the linker for libraries
+
+#+begin_src sh
+nvim etc/ld.so.conf
+#+end_src
+
+inside that
+
+#+begin_src sh
+/usr/lib
+/usr/lib64
+#+end_src
+
+it tells the ld linker tool where to find the libraries
+
+#+begin_src sh
+ldconfig -v -r ./
+#+end_src
+
+then run this ^ in the root folder of the LFS system to update the
+linker cache
+
+** init systems
+:PROPERTIES:
+:CUSTOM_ID: init-systems
+:END:
+Installing a proper init system is possible but just using a simple bash
+script is easier you can put the init script in =bin=, =sbin= or just
+the root folder. I prefer bin for simplicity.
+
+#+begin_example
+nvim bin/init
+#+end_example
+
+contents:
+
+#+begin_src sh
+#!/bin/bash
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+exec /bin/bash
+echo "hello everynyan"
+#+end_src
+
+now make the file executable with chmod
+
+** making a disk to boot
+:PROPERTIES:
+:CUSTOM_ID: making-a-disk-to-boot
+:END:
+We need to make a disk
+
+#+begin_src sh
+dd if=/dev/zero of=disk.img bs=1M count=2048
+#+end_src
+
+this command makes an empty two gigabyte disk which should be enough
+
+now run fdisk
+
+#+begin_example
+fdisk disk.img
+#+end_example
+
+press n for new partition then p for primary then 1 then the sectors
+leave default (Just press enter twice) then a to append then w to write
+and quit
+
+** mount and run it
+:PROPERTIES:
+:CUSTOM_ID: mount-and-run-it
+:END:
+now we need to mount it we first need to make it a loopback device
+
+#+begin_src sh
+sudo losetup -fP --show disk.img
+#+end_src
+
+it'll show the loopback device number now we need to make an ext4
+partition for the root folder
+
+#+begin_src sh
+sudo mkfs.ext4 /dev/loop#p1
+#+end_src
+
+for me it was loop2 so it'll be
+
+#+begin_src sh
+sudo mkfs.ext4 /dev/loop2p1
+#+end_src
+
+though for others it'll be different. Now mount it
+
+#+begin_src sh
+sudo mount /dev/loop#p1 /mnt
+#+end_src
+
+now copy everything there
+
+#+begin_src sh
+sudo cp -R root/* /mnt/
+#+end_src
+
+Now we need the bootloader
+
+#+begin_src sh
+sudo grub-install --target=i386-pc --root-directory=/mnt --no-floppy --modules="normal part_msdos ext2 multiboot" /dev/loop#
+#+end_src
+
+#+begin_quote
+WARNING: you need to replace grub-install with grub2-install if that's
+what your distro provides. In my case I'm using grub2 since I am on
+fedora though most distros such as debian use grub-install I think
+
+#+end_quote
+
+now we need the boot config
+
+#+begin_src sh
+sudo nvim /mnt/boot/grub/grub.cfg
+#+end_src
+
+#+begin_quote
+Note should be the same on grub2. if not it should be in teh grub2
+folder instead of the grub folder.
+
+#+end_quote
+
+this should be the grub.cfg file. it shouldn't contain anything else.
+
+#+begin_src sh
+menuentry 'linux' {
+        set root='(hd0,1)'
+        linux /boot/bzImage root=/dev/sda1 rw
+}
+#+end_src
+
+now unmount and remove the loopback device
+
+#+begin_src sh
+sudo umount /mnt
+sudo losetup -d /dev/loop#
+#+end_src
+
+** running it:
+:PROPERTIES:
+:CUSTOM_ID: running-it
+:END:
+#+begin_src sh
+qemu-system-x86_64 disk.img
+#+end_src
+
+* So uhhhhh....
+:PROPERTIES:
+:CUSTOM_ID: so-uhhhhh.
+:END:
+That's all The system we made is pretty barebones. We didn't even
+install a text editor. (if you do choose to add one I suggest kilo as
+the editor to keep up with the lightweight theme and not face library
+issues). But it should be a pretty fun system to just learn linux in
+general. I'll make another tutorial with a more complete toolset using
+busybox and internet soon hopefully. :3 bai bai

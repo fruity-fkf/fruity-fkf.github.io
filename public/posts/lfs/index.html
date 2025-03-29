@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en-gb"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">A guide to making a small Gnu or busybox based linux distro from scratch | FKF&#39;s blog</title>
+<meta property="og:title" content="A guide to making a small Gnu or busybox based linux distro from scratch | FKF&#39;s blog" />
+<meta name="twitter:title" content="A guide to making a small Gnu or busybox based linux distro from scratch | FKF&#39;s blog" />
+<meta itemprop="name" content="A guide to making a small Gnu or busybox based linux distro from scratch | FKF&#39;s blog" />
+<meta name="application-name" content="A guide to making a small Gnu or busybox based linux distro from scratch | FKF&#39;s blog" />
+<meta property="og:site_name" content="FKF&#39;s silly blog :3" />
+
+<meta name="description" content="FKF&#39;s silly little blog where it writes silly little articles and rants :3">
+<meta itemprop="description" content="FKF&#39;s silly little blog where it writes silly little articles and rants :3" />
+<meta property="og:description" content="FKF&#39;s silly little blog where it writes silly little articles and rants :3" />
+<meta name="twitter:description" content="FKF&#39;s silly little blog where it writes silly little articles and rants :3" />
+
+<meta property="og:locale" content="en-gb" />
+<meta name="language" content="en-gb" />
+
+  <link rel="alternate" hreflang="en-gb" href="http://localhost:1313/posts/lfs/" title="" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=0001-01-01T00:00:00Z />
+    <meta property="article:published_time" content=0001-01-01T00:00:00Z />
+    <meta property="og:url" content="http://localhost:1313/posts/lfs/" />
+
+    
+    <meta property="og:article:author" content="FKF" />
+    <meta property="article:author" content="FKF" />
+    <meta name="author" content="FKF" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "A guide to making a small Gnu or busybox based linux distro from scratch",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "0001-01-01",
+        "description": "",
+        "wordCount":  2226 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "0001-01-01",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "FKF\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.123.7">
+
+    
+    <meta property="og:title" content="A guide to making a small Gnu or busybox based linux distro from scratch" />
+<meta property="og:description" content="A guide to making a small Gnu or busybox based linux distro from scratch because people seem to think it is too hard.
+Why? The typical linux neckbeard stereotype ranking goes Arch then gentoo and then LFS(even though arch has become a &#34;normie distro&#34; due to the fact that the archinstall script now exists). There is an assumption that LFS is hard to build and configure. Well it is kinda true but also not really since the complexity only happens when you need to do some advanced configuration." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/lfs/" /><meta property="article:section" content="posts" />
+
+
+
+
+
+    
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="A guide to making a small Gnu or busybox based linux distro from scratch"/>
+<meta name="twitter:description" content="A guide to making a small Gnu or busybox based linux distro from scratch because people seem to think it is too hard.
+Why? The typical linux neckbeard stereotype ranking goes Arch then gentoo and then LFS(even though arch has become a &#34;normie distro&#34; due to the fact that the archinstall script now exists). There is an assumption that LFS is hard to build and configure. Well it is kinda true but also not really since the complexity only happens when you need to do some advanced configuration."/>
+
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/lfs/">
+    <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+</head>
+<body data-theme = "dark" class="notransition">
+
+<script src="/js/theme.js"></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">A guide to making a small Gnu or busybox based linux distro from scratch</h1>
+                
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b>Table of Contents</b></summary>
+        <nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Why?</a>
+</li>
+<li><a href="#headline-2">Thanks</a>
+</li>
+<li><a href="#headline-3">Dependencies:</a>
+</li>
+<li><a href="#headline-4">The first phase:</a>
+</li>
+<li><a href="#headline-5">The second phase: setting up the the linux source kernel</a>
+<ul>
+<li><a href="#headline-6">cloning the kernel</a>
+</li>
+<li><a href="#configuring-the-kernel">Configuring the kernel</a>
+</li>
+</ul>
+</li>
+<li><a href="#libraries">Libraries</a>
+</li>
+<li><a href="#init-systems">init systems</a>
+</li>
+<li><a href="#making-a-disk-to-boot">making a disk to boot</a>
+</li>
+<li><a href="#mount-and-run-it">mount and run it</a>
+</li>
+<li><a href="#running-it">running it:</a>
+</li>
+<li><a href="#so-uhhhhh.">So uhhhhh….</a>
+</li>
+</ul>
+</nav>
+    </details>
+            <div class="page-content">
+                
+<p>
+A guide to making a small Gnu or busybox based linux distro from scratch
+because people seem to think it is too hard.</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+Why?
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>The typical linux neckbeard stereotype ranking goes Arch then gentoo and
+then LFS(even though arch has become a &#34;normie distro&#34; due to the fact
+that the archinstall script now exists). There is an assumption that LFS
+is hard to build and configure. Well it is <em>kinda</em> true but also not
+really since the complexity only happens when you need to do some
+advanced configuration. But if you want to make a simple tty distro that
+works &#34;good enough&#34; then it is surprizingly easy. Easier than building
+gentoo at least. Somehow the main annoying part is cloning and gathering
+the repositories. But other than that everything else is surprizingly
+painless.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+Thanks
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>Special thanks to maplecircuit and their LFS tutorial series. I made
+this mainly inspired by them. Their vid helped me a LOT with the ncurses
+installation which I was having issues with since this is also my first
+time working with such a minimal system. Typically I use buildroot style
+systems. This was a fun experience NGL :3</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+Dependencies:
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>For debian based systems:</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install bc binutils bison dwarves flex gcc git gnupg2 gzip libelf-dev libncurses5-dev libssl-dev make openssl pahole perl-base rsync tar xz-utils autoconf gperf autopoint texinfo texi2html gettext gawk bzip2 qemu-system-x86 libtool</span></span></code></pre></div>
+</div>
+<p>
+for Arch(btw) systems:</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo pacman -S bc binutils bison dwarves flex gcc git gnupg gzip elfutils ncurses openssl make pahole perl rsync tar xz autoconf gperf gettext gawk bzip2 qemu-base libtool texinfo</span></span></code></pre></div>
+</div>
+<p>
+And for fellow fedora users:</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo dnf install bc binutils bison dwarves flex gcc git gnupg2 gzip elfutils-devel ncurses-devel openssl-devel make pahole perl rsync tar xz autoconf gperf gettext gawk bzip2 qemu-system-x86 libtool texinfo</span></span></code></pre></div>
+</div>
+<blockquote>
+<p>NOTE I used ChatGPT to convert the Fedora package list to debian and
+Arch versions. If the debian or arch copy paste doesn&#39;t work blame it
+not me. :3</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+The first phase:
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<p>Setting up the file tree.</p>
+<p>
+First make a folder to put the project in. I recommend making it use git
+via <code class="verbatim">git init .</code> Now go ahead and in the project folder make a folder
+called root. It will be the root or <code class="verbatim">/</code> folder for our linux build. Now
+go into the root folder and make a few folders called <code class="verbatim">boot</code> <code class="verbatim">dev</code>
+<code class="verbatim">proc</code> <code class="verbatim">sys</code> and <code class="verbatim">usr</code>. You can make them all at once by running</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mkdir boot proc sys dev usr</span></span></code></pre></div>
+</div>
+<p>
+now go into the usr folder.</p>
+<p>
+And in the folder make <code class="verbatim">bin, sbin, lib and lib64</code> folders.</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mkdir bin sbin lib lib64</span></span></code></pre></div>
+</div>
+<p>
+now go back to the root folder. Now we need to link the folders to the
+root folder via symlinks. Because programs sometimes assume the files
+are in different directories.</p>
+<p>
+just copy paste this:</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ln -s usr/bin bin
+</span></span><span style="display:flex;"><span>ln -s usr/sbin sbin
+</span></span><span style="display:flex;"><span>ln -s usr/lib lib
+</span></span><span style="display:flex;"><span>ln -s usr/lib64 lib64</span></span></code></pre></div>
+</div>
+<p>
+it should look like this</p>
+<pre class="example">
+├── bin -&gt; usr/bin
+├── boot
+├── dev
+├── etc
+├── lib -&gt; usr/lib
+├── lib64 -&gt; usr/lib64
+├── proc
+├── sbin -&gt; usr/sbin
+├── sys
+├── usr
+└── var
+
+# Pro tip you can copy output from STDOUT (AKA piping) by using xsel --clipboard or xclip -selection clipboard
+# That&#39;s how I copied this diagram from the tree command
+</pre>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-3">
+<h3 id="headline-5">
+The second phase: setting up the the linux source kernel
+</h3>
+<div id="outline-text-headline-5" class="outline-text-3">
+<div id="outline-container-headline-6" class="outline-4">
+<h4 id="headline-6">
+cloning the kernel
+</h4>
+<div id="outline-text-headline-6" class="outline-text-4">
+<p>There&#39;s a few ways to get the kernel. You can get it from kernel.org
+itself or git. I personally get it from the github repo of torvalds
+himself.</p>
+<p>
+First go up to the main folder of the project. Aka the folder that is
+above the <code class="verbatim">root folder</code> we&#39;ve made. Now let&#39;s clone the repo.</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git clone --depth <span style="color:#ae81ff">1</span> https://github.com/torvalds/linux</span></span></code></pre></div>
+</div>
+<p>
+Or you can get a zip from the kernel site itself. It just bois down to
+personal preference put it in a directory . it will also act as our main
+project directory.</p>
+</div>
+</div>
+<div id="outline-container-configuring-the-kernel" class="outline-4">
+<h4 id="configuring-the-kernel">
+Configuring the kernel
+</h4>
+<div id="outline-text-configuring-the-kernel" class="outline-text-4">
+<p>Go ahead and run <code class="verbatim">make tinyconfig</code> to generate the smallest possible
+kernel that still compiles.I think it requires some dependencies but I
+am sure you&#39;ll figure them out. It will have absolutely no fucking use
+and can&#39;t do anything(kinda like you :3) Now we need to configure the
+kernel. It is surprizingly easy since there&#39;s a built in GUI/TUI
+configurator. run <code class="verbatim">make menuconfig</code> to open the configurator.</p>
+<p>
+First go down from the main page and enable 64 bit kernel.</p>
+<p>
+Next go to: General Config =&gt; Compile Standard kernel features =&gt; Enable
+support for PrintK for seeing the errors and stuff.</p>
+<p>
+Next go down back to the main menu. From there enable block layers.
+That&#39;s for storage devices.</p>
+<p>
+After that we need to enable binary file support. For that you need to
+scroll down to Executable File formats =&gt; Enable support for ELF
+binaries. And support for scripts starting with #! for running scripts.</p>
+<p>
+Now we need to add some features and drivers. IMO some of the settings
+shouldn&#39;t be in the drivers section but eh it is what it is.</p>
+<p>
+First of all enable PCI support. Now go down to generic driver options.
+From there enable tempfs in /dev . And enable automount for it too.</p>
+<p>
+Now then the serial ATA option for SATA should be enabled to use SATA
+drives which we need for storage. Now go into the option by pressing
+enter and scroll down to the option that starts with &#34;Intel ESB&#34; and has
+some random letters after that. I think that is the driver for the QEMU
+drives. Now we need SCSI support. So go back to the Device drivers page
+and go to SCSI device support =&gt; SCSI device support (Wow nice naming
+isn&#39;t it?). Now back out. Now we need to enable TTY to y&#39;know talk to
+the device. go to device drivers =&gt; character devices and enable TTY.
+Now in Character devices go to serial drivers to enable communication
+via serial. IIRC it uses 8250 and 16550. (me forgor :c ) . Now enable
+console on the serial ports.</p>
+<p>
+Now go back to the home page and go to file systems. Enable ext4 or
+whatever you prefer. I&#39;m going with ext4. Now scroll to Pseudo
+filesystems and inside there you need to enable sysfs and /proc.</p>
+<p>
+Honestly that&#39;s all we need for now. Now compile the binary by running
+==bash make -j8</p>
+<pre class="example">
+Replace 8 with how many cores you have. For example if you have 6 cores run `make -j6`Now place it in the main folder of the project for easy access
+```bash
+mv arch/x86/boot/bzImage ..
+</pre>
+<p>
+now we need to copy it to the boot folder in the root directory</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mv bzImage root/boot/</span></span></code></pre></div>
+</div>
+<p>
+Now we&#39;re done doing silly things with the kernel for now. ## The
+userland and user tools. Userland refers to the tools and apps the user
+gets to use. For that we&#39;re going to install binutils, a shell and my
+fav text editor, vim.(well technically helix is better but
+y&#39;know….harder to set up on a system made from scratch).</p>
+<p>
+First let&#39;s get a shell. I&#39;m going with bash for now. Just paste in the
+command from the gnu website ( I added depth 1 because I don&#39;t need the
+extra git history crap :3)</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone --depth <span style="color:#ae81ff">1</span> https://git.savannah.gnu.org/git/bash.git</span></span></code></pre></div>
+</div>
+<p>
+Now we need to compile it. make a folder in the project folder called
+bash-binary. That is where the binary of the bash build will be
+outputted. Now go to that folder and run the configuration command for
+building bash. Run</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>../bash/configure --prefix<span style="color:#f92672">=</span>/usr</span></span></code></pre></div>
+</div>
+<p>
+it tells us that we want bash to be set in a folder called /usr in the
+end. That will set up all the files needed to compile bash in the
+bash-binary folder. We will now compile the binary with the <code class="verbatim">make -j8</code>
+command (substitute 8 with how many cores you have) Now we need to
+install it to the root of the linux system we&#39;re making. run
+<code class="verbatim">bash  make DESTDIR=/home/user/lfs/root install</code> Replace <code class="verbatim">user</code> with
+your linux username and replace lfs with whatever name and place you
+used for the folder that the project is in. for me it was in the
+projects folder. So I ran</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>make DESTDIR<span style="color:#f92672">=</span>/home/fkf/Projects/lfs/root install</span></span></code></pre></div>
+</div>
+<p>
+So in theory we now should have bash installed. Now link it to the bin
+folder by going to root/bin and running</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ln -s bash sh</span></span></code></pre></div>
+</div>
+<p>
+Now we need to move on to coreutils. There are two ways to do that. One
+is via GNU coreutils which will make it GNU/linux. Or you can just go
+and straight up use busybox which supplies you with most of the tools
+while being more lightweight and barebones. For this tutorial I&#39;ll use
+binutils but I&#39;ll also include how to use busybox as well :3 .</p>
+<p>
+First the bash method:</p>
+<p>
+Clone the binutils via</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone --depth <span style="color:#ae81ff">1</span> https://github.com/coreutils/coreutils</span></span></code></pre></div>
+</div>
+<p>
+Now we need to make another build folder called binutils-building cd
+into the coreutils repo folder and run <code class="verbatim">./bootstrap</code> now go to the
+binutils-building folder.</p>
+<p>
+Now we want to configure the makefile. The process is similar to the
+method for bash. Run
+<code class="verbatim">bash  ../coreutils/configure --without-selinux --disable-libcap --prefix=/usr</code>
+We disabled selinux because this system we&#39;re building is not meant for
+deployment or anything that requires additional security. Thus we don&#39;t
+really need SELINUX. And honestly we don&#39;t need the additional graphical
+features of libcap so fuck that too. After that we use the same steps as
+installing bash.</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>make -j8 
+</span></span><span style="display:flex;"><span>make DESTDIR<span style="color:#f92672">=</span>/home/user/lfs/root install</span></span></code></pre></div>
+</div>
+<p>
+Now we need util-linux mainly for the mount command.</p>
+<p>
+we can do a simple clone, autogen and install like the old stuff as
+usual</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone --depth <span style="color:#ae81ff">1</span> https://github.com/util-linux/util-linux
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mkdir build-util
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd util-linux
+</span></span><span style="display:flex;"><span>./autogen.sh
+</span></span><span style="display:flex;"><span>cd ..
+</span></span><span style="display:flex;"><span>cd build-util
+</span></span><span style="display:flex;"><span>../util-linux/configure --disable-liblastlog2 --prefix<span style="color:#f92672">=</span>/usr
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>make -j8
+</span></span><span style="display:flex;"><span>make DESTDIR<span style="color:#f92672">=</span>/home/user/lfs/root install
+</span></span><span style="display:flex;"><span>cd ..</span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-libraries" class="outline-3">
+<h3 id="libraries">
+Libraries
+</h3>
+<div id="outline-text-libraries" class="outline-text-3">
+<p>Now we need GNU libraries. they&#39;re pretty much required to run any
+dynamically linked library.</p>
+<p>
+Clone the repo</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone --depth <span style="color:#ae81ff">1</span> https://sourceware.org/git/glibc</span></span></code></pre></div>
+</div>
+<p>
+Make a build folder and cd there</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mkdir build-glibc
+</span></span><span style="display:flex;"><span>cd build-glibc</span></span></code></pre></div>
+</div>
+<p>
+Now we need to configure it. We&#39;ll specify the lib folder and the usr
+prefix</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>../glibc/configure --libdir<span style="color:#f92672">=</span>/lib --prefix<span style="color:#f92672">=</span>/usr</span></span></code></pre></div>
+</div>
+<p>
+Now make and installl</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>make -j8
+</span></span><span style="display:flex;"><span>make DESTDIR<span style="color:#f92672">=</span>/home/user/lfs/root install</span></span></code></pre></div>
+</div>
+<p>
+now check the lib64 folder to make sure they installed</p>
+<p>
+Now we need ncurses for bash. Because For some dumb reason bash isn&#39;t
+statically linked to ncurses. ;-;</p>
+<p>
+First yoink ncurses from GNU ftps</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.5.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tar -xvzf ncurses-6.5.tar.gz
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># note: For me 6.4 works better though I highly reccomend 6.5 for others</span></span></span></code></pre></div>
+</div>
+<p>
+next do the usual build folder, configure crap</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mkdir buiild-ncurses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd buiild-ncurses
+</span></span><span style="display:flex;"><span>../ncurses-6.5/configure --with-shared --with-termlib --enable-widec --with-versioned-syms --prefix<span style="color:#f92672">=</span>/usr
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>make -j8
+</span></span><span style="display:flex;"><span>make DESTDIR<span style="color:#f92672">=</span>/home/user/lfs/root install</span></span></code></pre></div>
+</div>
+<p>
+now go to the root directory</p>
+<p>
+and then link the wide char libs (the ones that end with w) to the
+regular ones</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ln -s libncursesw.so.6 lib/libncurses.so.6
+</span></span><span style="display:flex;"><span>ln -s libtinfow.so.6 lib/libtinfo.so.6</span></span></code></pre></div>
+</div>
+<p>
+now we need to tweak the linker for libraries</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>nvim etc/ld.so.conf</span></span></code></pre></div>
+</div>
+<p>
+inside that</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>/usr/lib
+</span></span><span style="display:flex;"><span>/usr/lib64</span></span></code></pre></div>
+</div>
+<p>
+it tells the ld linker tool where to find the libraries</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ldconfig -v -r ./</span></span></code></pre></div>
+</div>
+<p>
+then run this ^ in the root folder of the LFS system to update the
+linker cache</p>
+</div>
+</div>
+<div id="outline-container-init-systems" class="outline-3">
+<h3 id="init-systems">
+init systems
+</h3>
+<div id="outline-text-init-systems" class="outline-text-3">
+<p>Installing a proper init system is possible but just using a simple bash
+script is easier you can put the init script in <code class="verbatim">bin</code>, <code class="verbatim">sbin</code> or just
+the root folder. I prefer bin for simplicity.</p>
+<pre class="example">
+nvim bin/init
+</pre>
+<p>
+contents:</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>mount -t proc none /proc
+</span></span><span style="display:flex;"><span>mount -t sysfs none /sys
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>exec /bin/bash
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;hello everynyan&#34;</span></span></span></code></pre></div>
+</div>
+<p>
+now make the file executable with chmod</p>
+</div>
+</div>
+<div id="outline-container-making-a-disk-to-boot" class="outline-3">
+<h3 id="making-a-disk-to-boot">
+making a disk to boot
+</h3>
+<div id="outline-text-making-a-disk-to-boot" class="outline-text-3">
+<p>We need to make a disk</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/dev/zero of<span style="color:#f92672">=</span>disk.img bs<span style="color:#f92672">=</span>1M count<span style="color:#f92672">=</span><span style="color:#ae81ff">2048</span></span></span></code></pre></div>
+</div>
+<p>
+this command makes an empty two gigabyte disk which should be enough</p>
+<p>
+now run fdisk</p>
+<pre class="example">
+fdisk disk.img
+</pre>
+<p>
+press n for new partition then p for primary then 1 then the sectors
+leave default (Just press enter twice) then a to append then w to write
+and quit</p>
+</div>
+</div>
+<div id="outline-container-mount-and-run-it" class="outline-3">
+<h3 id="mount-and-run-it">
+mount and run it
+</h3>
+<div id="outline-text-mount-and-run-it" class="outline-text-3">
+<p>now we need to mount it we first need to make it a loopback device</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo losetup -fP --show disk.img</span></span></code></pre></div>
+</div>
+<p>
+it&#39;ll show the loopback device number now we need to make an ext4
+partition for the root folder</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo mkfs.ext4 /dev/loop#p1</span></span></code></pre></div>
+</div>
+<p>
+for me it was loop2 so it&#39;ll be</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo mkfs.ext4 /dev/loop2p1</span></span></code></pre></div>
+</div>
+<p>
+though for others it&#39;ll be different. Now mount it</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo mount /dev/loop#p1 /mnt</span></span></code></pre></div>
+</div>
+<p>
+now copy everything there</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo cp -R root/* /mnt/</span></span></code></pre></div>
+</div>
+<p>
+Now we need the bootloader</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo grub-install --target<span style="color:#f92672">=</span>i386-pc --root-directory<span style="color:#f92672">=</span>/mnt --no-floppy --modules<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;normal part_msdos ext2 multiboot&#34;</span> /dev/loop#</span></span></code></pre></div>
+</div>
+<blockquote>
+<p>WARNING: you need to replace grub-install with grub2-install if that&#39;s
+what your distro provides. In my case I&#39;m using grub2 since I am on
+fedora though most distros such as debian use grub-install I think</p>
+</blockquote>
+<p>
+now we need the boot config</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo nvim /mnt/boot/grub/grub.cfg</span></span></code></pre></div>
+</div>
+<blockquote>
+<p>Note should be the same on grub2. if not it should be in teh grub2
+folder instead of the grub folder.</p>
+</blockquote>
+<p>
+this should be the grub.cfg file. it shouldn&#39;t contain anything else.</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>menuentry <span style="color:#e6db74">&#39;linux&#39;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        set root<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;(hd0,1)&#39;</span>
+</span></span><span style="display:flex;"><span>        linux /boot/bzImage root<span style="color:#f92672">=</span>/dev/sda1 rw
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+</div>
+<p>
+now unmount and remove the loopback device</p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo umount /mnt
+</span></span><span style="display:flex;"><span>sudo losetup -d /dev/loop#</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-running-it" class="outline-3">
+<h3 id="running-it">
+running it:
+</h3>
+<div id="outline-text-running-it" class="outline-text-3">
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>qemu-system-x86_64 disk.img</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-so-uhhhhh." class="outline-2">
+<h2 id="so-uhhhhh.">
+So uhhhhh….
+</h2>
+<div id="outline-text-so-uhhhhh." class="outline-text-2">
+<p>That&#39;s all The system we made is pretty barebones. We didn&#39;t even
+install a text editor. (if you do choose to add one I suggest kilo as
+the editor to keep up with the lightweight theme and not face library
+issues). But it should be a pretty fun system to just learn linux in
+general. I&#39;ll make another tutorial with a more complete toolset using
+busybox and internet soon hopefully. :3 bai bai</p>
+</div>
+</div>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/fruity-fkf" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 FKF.
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer><a href="#" title="Go to top" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script async src="http://localhost:1313/js/main.js" ></script>
+
+    
+
+</body>
+</html>
