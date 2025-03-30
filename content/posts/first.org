@@ -1,6 +1,6 @@
-#+title: My (moderately small) journey with Org mode
-
-#+draft: false
+#+TITLE: My (moderately small) journey with Org mode
+#+DRAFT: false
+#+DATE: [2024-09-05 jue 19:00]
 
 So I recently randomly decided to try to use Emacs for my note taking because I heard a lot of good things about the org mode.
 

@@ -6,7 +6,71 @@
     <description>Recent content in Posts on FKF&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Wed, 04 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A guide to making a small Gnu or busybox based linux distro from scratch</title>
+      <link>http://localhost:1313/posts/lfs/</link>
+      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/lfs/</guid>
+      
+      <description>&lt;p&gt;
+A guide to making a small Gnu or busybox based linux distro from scratch
+because people seem to think it is too hard.&lt;/p&gt;
+&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;headline-1&#34;&gt;
+Why?
+&lt;/h3&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-3&#34;&gt;
+&lt;p&gt;The typical linux neckbeard stereotype ranking goes Arch then gentoo and
+then LFS(even though arch has become a &amp;#34;normie distro&amp;#34; due to the fact
+that the archinstall script now exists). There is an assumption that LFS
+is hard to build and configure. Well it is &lt;em&gt;kinda&lt;/em&gt; true but also not
+really since the complexity only happens when you need to do some
+advanced configuration. But if you want to make a simple tty distro that
+works &amp;#34;good enough&amp;#34; then it is surprizingly easy. Easier than building
+gentoo at least. Somehow the main annoying part is cloning and gathering
+the repositories. But other than that everything else is surprizingly
+painless.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>My (moderately small) journey with Org mode</title>
+      <link>http://localhost:1313/posts/first/</link>
+      <pubDate>Thu, 05 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/first/</guid>
+      
+      <description>&lt;p&gt;
+So I recently randomly decided to try to use Emacs for my note taking because I heard a lot of good things about the org mode.&lt;/p&gt;
+&lt;p&gt;
+And holy fucking fuck Org mode is amazing to say the least. It is more robust than markdown due to supporting much much more feature wise. Also the Emacs editor itself is also just a pleasure  to work with( with Evil AKA vim key bindings of course since I don&amp;#39;t want to fucking destroy my fingers ). I picked Doom emacs since I was still a noob at emacs and I heard a lot of good reviews about it.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>My beginning with rust only tools</title>
+      <link>http://localhost:1313/posts/rustification/</link>
+      <pubDate>Thu, 05 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/rustification/</guid>
+      
+      <description>&lt;p&gt;
+Hoi..&lt;/p&gt;
+&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;headline-1&#34;&gt;
+How did we get here….
+&lt;/h3&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-3&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;
+So recently I was wondering what it&amp;#39;d be like to use Rust. IDK why….I just had the urge to try rust.&lt;/p&gt;
+&lt;p&gt;
+Then something weird happened. I saw a &lt;a href=&#34;https://www.youtube.com/watch?v=dFkGNe4oaKk&#34;&gt;No boilerplate video where they made a rust-only based command line envirorment.&lt;/a&gt; So zellij for the terminal multiplexer, Nu for the shell, Helix for the editor among many others. That made me wonder what the future of the command line would look like. So since then I had that thought in my head. Then two or three days later I got another video suggestion &lt;a href=&#34;https://www.youtube.com/watch?v=br3GIIQeefY&#34;&gt;for learning rust in a 10 minute video or so.&lt;/a&gt; That reignited the will to try out an all rust dev system. So that&amp;#39;s how I ended up writing this….&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>A quick overview of the tools I use in general</title>
       <link>http://localhost:1313/posts/about-tools/</link>
@@ -14,46 +78,12 @@
       
       <guid>http://localhost:1313/posts/about-tools/</guid>
       
-      <description>HOI So this is just a small list of things I use in my daily life…. I don&amp;#39;t really use the computer to game much so IDK what to put in as my gaming software.
-I mainly write my code in the terminal with either neovim or helix (Shoutout silt) or Emacs for taking notes and such. In fact this site was made using Org mode!
-I have a pretty good Neovim config I am proud of.</description>
-      
-    </item>
-    
-    <item>
-      <title>A fresh begining with rust</title>
-      <link>http://localhost:1313/posts/rustification/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/posts/rustification/</guid>
-      
-      <description>Hoi..
-How did we get here…. So recently I was wondering what it&amp;#39;d be like to use Rust. IDK why….I just had the urge to try rust.
-Then something weird happened. I saw a No boilerplate video where they made a rust-only based command line envirorment. So zellij for the terminal multiplexer, Nu for the shell, Helix for the editor among many others. That made me wonder what the future of the command line would look like.</description>
-      
-    </item>
-    
-    <item>
-      <title>A guide to making a small Gnu or busybox based linux distro from scratch</title>
-      <link>http://localhost:1313/posts/lfs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/posts/lfs/</guid>
-      
-      <description>A guide to making a small Gnu or busybox based linux distro from scratch because people seem to think it is too hard.
-Why? The typical linux neckbeard stereotype ranking goes Arch then gentoo and then LFS(even though arch has become a &amp;#34;normie distro&amp;#34; due to the fact that the archinstall script now exists). There is an assumption that LFS is hard to build and configure. Well it is kinda true but also not really since the complexity only happens when you need to do some advanced configuration.</description>
-      
-    </item>
-    
-    <item>
-      <title>My (moderately small) journey with Org mode</title>
-      <link>http://localhost:1313/posts/first/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/posts/first/</guid>
-      
-      <description>So I recently randomly decided to try to use Emacs for my note taking because I heard a lot of good things about the org mode.
-And holy fucking fuck Org mode is amazing to say the least. It is more robust than markdown due to supporting much much more feature wise. Also the Emacs editor itself is also just a pleasure to work with( with Evil AKA vim key bindings of course since I don&amp;#39;t want to fucking destroy my fingers ).</description>
+      <description>&lt;p&gt;HOI
+So this is just a small list of things I use in my daily life…. I don&amp;#39;t really use the computer to game much so IDK what to put in as my gaming software.&lt;/p&gt;
+&lt;p&gt;
+I mainly write my code in the terminal with either neovim or helix (Shoutout silt) or Emacs for taking notes and such. In fact this site was made using Org mode!&lt;/p&gt;
+&lt;p&gt;
+I have a pretty good Neovim config I am proud of. &lt;a href=&#34;https://github.com/fruity-fkf/nvim&#34;&gt;Here&amp;#39;s the link to that&lt;/a&gt;. I put a &lt;strong&gt;LOT&lt;/strong&gt; of time into making that ;-;&lt;/p&gt;</description>
       
     </item>
     

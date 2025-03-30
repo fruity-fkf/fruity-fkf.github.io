@@ -1,9 +1,8 @@
 
-#+title: A guide to making a small Gnu or busybox based linux distro from scratch
 
-
-#+draft: false
-
+#+TITLE: A guide to making a small Gnu or busybox based linux distro from scratch
+#+DRAFT: false
+#+DATE: [2025-03-29 jas 06:00]
 
 A guide to making a small Gnu or busybox based linux distro from scratch
 because people seem to think it is too hard.

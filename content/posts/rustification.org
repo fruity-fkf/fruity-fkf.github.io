@@ -1,6 +1,10 @@
-#+title: A fresh begining with rust
 
-#+draft: false
+
+#+TITLE: My beginning with rust only tools
+#+DRAFT: false
+#+DATE: [2024-09-05 jue 19:00]
+
+
 
 Hoi..
 
