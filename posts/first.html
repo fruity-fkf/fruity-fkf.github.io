@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Syntax highlighting for code blocks -->
+    <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/rust.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">My Blog</a>
+            <ul class="nav-links">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/about/index.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="content">
+        <p>So I recently randomly decided to try to use Emacs for my note taking
+because I heard a lot of good things about the org mode.</p>
+<p>And holy fucking fuck Org mode is amazing to say the least. It is more
+robust than markdown due to supporting much much more feature wise. Also
+the Emacs editor itself is also just a pleasure to work with( with Evil
+AKA vim key bindings of course since I don't want to fucking destroy my
+fingers ). I picked Doom emacs since I was still a noob at emacs and I
+heard a lot of good reviews about it.</p>
+<p>And just…wow it was like heaven. It removed my main issue with
+markdown which is that there is no way to do easy subtext or supertext
+like exponents for math formulas since I use my computer for taking
+notes when studying. And making tables in markdown is also a bit of a
+pain. But Org mode honestly solved all that. The creation of tables is a
+breeze. It spaces out the lines and you can move between cells via the
+tab key.</p>
+<p>Also one <strong>AMAZING</strong> feature is the ability to collapse headers so it
+saves screen space.</p>
+<p>And some people talk about how emacs is bloat but luckily there is a
+&quot;daemon mode&quot; thus I can have emacs open faster than my vim config.</p>
+<p>One great thing is that emacs is mainly a graphical editor. Thus when I
+want I can view images and browse the web inside the editor itself!! =D
+Emacs is honestly like a small operating system. You can have an unholy
+amount of features and tools built in at your disposal.</p>
+<p>Though configuring emacss is a fucking pain in the ass. I tried to write
+my own config after using doom emacs for a while but then realized how
+painful it was. The debug/warning info for when something goes wrong in
+your config is basically nonexistent. The documentation of plugins is an
+extreme pain in the ass to find. And the plugin manager system isn't as
+robust as Neovim in my opinion. Yesterday when I tried to write my own
+config I tried 3 different plugins with each having their own random
+issues which was just annoying to say the least but not only that the
+community behind emacs feels a bit small compared to neovim in my
+opinion due to the current sudden rise in popularity. Which is kinda
+valid due because just look at how far terminals have come.. They have
+more bling than some GUIs. But there still exists a community of emacs
+users I guess. It's just a shame people don't experience the joy of
+writing stuff in ORG mode.</p>
+<p>Now….back to my configuration journey…</p>
+<p>I tried plugin managers and then settled on melpa which was suggested by
+my homie headset. Then I followed along with distrotubes tutorial series
+on configuring emacs. But then disaster struck. I edited my config and
+reloaded. Errors everywhere….but unfortunately I had forgotten what
+changes I did to the config so I couldn't undo it. And the errors were
+so cryptic I couldn't wrap my head around them. So, defeated and
+dejected I returned back to doom emacs which I am currently using to
+write this blog.</p>
+<p>So yeah…..Emacs…not a perfect experience. In fact it is <strong><strong>FAR</strong></strong>
+far away from that. But it is still a fookin good operating system. I
+just wish it had a good text editor built in. (sorry I couldn't resist
+making that dumb joke). But yeah for now I will stick with emacs</p>
+<p>BTW… <strong>I STILL CANT FIGURE OUT HOW TO MAKE DOOOM EMACS FUCKING
+TRANSPARENT AAAA</strong></p>
+
+    </main>
+    <button id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; background: none; border: none; font-size: 24px; color: white;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <footer>
+        <p>&copy; 2025 FKF's faggot blog, no copyright exists :3 </p>
+    </footer>
+    <script>
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

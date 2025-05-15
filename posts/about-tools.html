@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Syntax highlighting for code blocks -->
+    <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/rust.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">My Blog</a>
+            <ul class="nav-links">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/about/index.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="content">
+        <h1>HOI</h1>
+<p>So this is just a small list of things I use in my daily life…. I
+don't really use the computer to game much so IDK what to put in as my
+gaming software.</p>
+<p>I mainly write my code in the terminal with either neovim or helix
+(Shoutout silt) or Emacs for taking notes and such. In fact this site
+was made using Org mode!</p>
+<p>I have a pretty good Neovim config I am proud of. <a href="https://github.com/fruity-fkf/nvim">Here's the link to
+that</a>. I put a <strong>LOT</strong> of time into
+making that ;-;</p>
+<p>I also use Doom emacs because configuring emacs is a pain in the fookin
+ass to configure due to a lack of documentation.</p>
+<p>As for my Operating system I prefer NixOS because it makes managing my
+development envirorments easier on all my computers. So I can have a
+consistent experience on any computer I own.</p>
+<p>As for my colorscheme it just depends on my mood. Though the two most
+used themes are Catppuccin mocha and Gruvbox material dark hard
+(shoutout silt).</p>
+<h2>Here's a list of some tools I use in my daily life:</h2>
+<ul>
+<li>Terminal emulator: <a href="https://sw.kovidgoyal.net/kitty">kitty</a>
+(Decently fast, supports ligatures and the kitty backend for
+rendering images is nice IG)</li>
+<li>Terminal file browser: [<em>yazi</em>]{.spurious-link
+target=” <a href="https://github.com/sxyazi/yazi%E2%80%9D%7D">https://github.com/sxyazi/yazi”}</a> (Honestly I don't know
+any other file manager that can compare)</li>
+<li>Window manager: <a href="https://hyprland.org/">hyprland</a> (Dogshit dev but
+the WM itself is pretty nice (I hate it the only reason I use it is
+for gesture support))</li>
+<li>Terminal multiplexer: <a href="https://github.com/tmux/tmux">Tmux</a> though
+I've recently been using <a href="https://zellij.dev/">zellij</a> recently
+because it is more &quot;easy&quot; out of the box</li>
+</ul>
+<p>IDK what else to say so uhhh byee</p>
+
+    </main>
+    <button id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; background: none; border: none; font-size: 24px; color: white;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <footer>
+        <p>&copy; 2025 FKF's faggot blog, no copyright exists :3 </p>
+    </footer>
+    <script>
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

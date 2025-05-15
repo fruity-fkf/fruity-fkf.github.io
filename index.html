@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Syntax highlighting for code blocks -->
+    <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/rust.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">My Blog</a>
+            <ul class="nav-links">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/about/index.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="content">
+        <h1>Blog Posts</h1>
+        <div class="blog-posts">
+            <article class="blog-post">
+                <h2><a href="/posts/fgblg.html">fgblg</a></h2>
+                <p class="post-preview">So uhhh.... As you can see, my site currently looks a bit different.  And that's because I FUCKIN WROTE A STATIC SITE GENERATOR. IN RUST. FROM SCRATCH.  So basically, I was unsatisfied with Hugo for m...</p>
+                <a href="/posts/fgblg.html" class="read-more">Read more →</a>
+            </article><article class="blog-post">
+                <h2><a href="/posts/rustification.html">rustification</a></h2>
+                <p class="post-preview">  ------------------------------------------------------------------------  So recently I was wondering what it\'d be like to use Rust. IDK why....I just had the urge to try rust.  Then something weir...</p>
+                <a href="/posts/rustification.html" class="read-more">Read more →</a>
+            </article><article class="blog-post">
+                <h2><a href="/posts/about-tools.html">about-tools</a></h2>
+                <p class="post-preview"> So this is just a small list of things I use in my daily life.... I don\'t really use the computer to game much so IDK what to put in as my gaming software.  I mainly write my code in the terminal wi...</p>
+                <a href="/posts/about-tools.html" class="read-more">Read more →</a>
+            </article><article class="blog-post">
+                <h2><a href="/posts/first.html">first</a></h2>
+                <p class="post-preview">So I recently randomly decided to try to use Emacs for my note taking because I heard a lot of good things about the org mode.  And holy fucking fuck Org mode is amazing to say the least. It is more r...</p>
+                <a href="/posts/first.html" class="read-more">Read more →</a>
+            </article>
+        </div>
+    </main>
+    <button id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; background: none; border: none; font-size: 24px; color: white;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <footer>
+        <p>&copy; 2025 FKF's faggot blog, no copyright exists :3 </p>
+    </footer>
+    <script>
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

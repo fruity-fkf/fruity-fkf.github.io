@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Syntax highlighting for code blocks -->
+    <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/rust.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">My Blog</a>
+            <ul class="nav-links">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/about/index.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="content">
+        <h1>Hoi..</h1>
+<h2>How did we get here….</h2>
+<hr />
+<p>So recently I was wondering what it'd be like to use Rust. IDK why….I
+just had the urge to try rust.</p>
+<p>Then something weird happened. I saw a <a href="https://www.youtube.com/watch?v=dFkGNe4oaKk">No boilerplate video where they
+made a rust-only based command line
+envirorment.</a> So zellij for
+the terminal multiplexer, Nu for the shell, Helix for the editor among
+many others. That made me wonder what the future of the command line
+would look like. So since then I had that thought in my head. Then two
+or three days later I got another video suggestion <a href="https://www.youtube.com/watch?v=br3GIIQeefY">for learning rust in
+a 10 minute video or so.</a>
+That reignited the will to try out an all rust dev system. So that's
+how I ended up writing this….</p>
+<h2>The challange:</h2>
+<p>For the next month I will limit myself to using as many rust based tools
+as possible. Such as helix for code editing, nu as the shell and things
+like that. I will also try to only code my projects in rust and try to
+learn rust in general. And the main thing I will try to do is to
+document as much of the project as possible and then publish it.</p>
+<h2>The setup:</h2>
+<p>I'm on NixOS. I manage my config files via home manager. so every app
+was configured by it. The config is available on my github. I am using
+Nushell with the carapace backend/completion engine( IDK what to call it
+honestly… ) and starship as my prompt.</p>
+<p>I am also using Kitty as my terminal and Helix as my editor with Gruvbox
+as the theme everywhere….</p>
+<p>So uhhh….That's all for now I guess</p>
+<p>:wave:</p>
+
+    </main>
+    <button id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; background: none; border: none; font-size: 24px; color: white;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <footer>
+        <p>&copy; 2025 FKF's faggot blog, no copyright exists :3 </p>
+    </footer>
+    <script>
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

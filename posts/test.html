@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Syntax highlighting for code blocks -->
+    <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/rust.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">My Blog</a>
+            <ul class="nav-links">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/about/index.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="content">
+        <p>So uhhh…. As you can see, my site currently looks a bit different.
+And that’s because I FUCKIN WROTE A STATIC SITE GENERATOR. IN RUST. FROM SCRATCH.</p>
+<p>So basically, I was unsatisfied with Hugo for multiple reasons. Mainly the fact that the themes were hard to configure/mod and the fact that the tool itself is a bit hard to configure. Then one day my friend wrote their own static site generator called FAG blog.<br />
+<a href="https://airkoala.lol/blog/1-fagblog-stack">This tool</a>  was honestly pretty cool but I sadly have an overinflated ego. So I decided to make something….better. Something more….faggoted. SO I wrote my own static site generator called FaggotBlog in rust for the extra gay vibes :3 .</p>
+<h2>How I made it</h2>
+<hr />
+<p>So I decided on using markdown (And sadly betraying my bestie org-mode :c) because it was the most widely available/used format for text. So I assumed that it would have more libraries and documentations available. And I was right. So I googled “Rust markdown to html” and clicked the first github link I could find. Which led me to <a href="https://github.com/wooorm/markdown-rs">markdown-rs</a> which is still in beta. But it was a pretty easy library.
+In fact I only neede two damn lines to convert the markdown</p>
+<pre><code class="language-rust">use markdown::to_html;
+//and this one:
+let html_output = to_html(markdown_input);
+</code></pre>
+<p>But it had some glaring issues. Firstly it was in beta. Secondly, it was missing some features. And it, for some reason refused to compile on my friends Arch computer.(For context I use Nix unlike most filthy peasants. So I never had such issues). So I moved over my project to Comrak (Which my friend suggested against due to the fact that it used a bunch of dependencies) since it had more out-of-the-box features. Plus more extensions too.</p>
+<p>So I moved over to it. Surprisingly it was only two lines of code(initially) too!.</p>
+<pre><code class="language-rust">use comrak::{ComrakOptions, markdown_to_html};
+let html = markdown_to_html(markdown, &amp;ComrakOptions::default());
+</code></pre>
+<p>So after that I needed a way to turn it into a proper html document with CSS and stuff.
+For that I just made an html file and put <code>{body}</code> as the placeholder text inside it to be replaced. Afterwards I just replaced {body} with my code with some basic rust string substitution by just doing replace().</p>
+<p>Then I needed CSS to make it look not-ugly. But then I realized something. I suck at CSS and making things look good. So the next part might make you mad. I used….chatgpt to generate the CSS. (everything else was made live during youtube livestreams by myself). Then just injected the CSS by editing the substitution html file.</p>
+<p>Then I just wrote some functions for making the output folder structure and copying the output over to the output folder.</p>
+<p>Then I needed a homepage. So I just wrote a  function that I stole from someplace partially to take the first few lines and render them seperately.</p>
+<pre><code class="language-rust">fn extract_preview(content: &amp;str, max_length: usize) -&gt; String {
+    let clean_content = content
+        .lines()
+        .filter(|line| !line.starts_with('#'))
+        .collect::&lt;Vec&lt;&amp;str&gt;&gt;()
+        .join(&quot; &quot;);
+    let preview = clean_content.chars().take(max_length).collect::&lt;String&gt;();
+    if clean_content.len() &gt; max_length {
+        format!(&quot;{}...&quot;, preview)
+    } else {
+        preview
+    }
+}
+</code></pre>
+<p>Then I thought I was done for now. But after sending that version to a friend he complained about how he had to use python to host a webserver to view the contents. Then I remembered hugo had a server too. So I wrote a simple quick webserver using Axum.
+I contemplated using Rocket or something else which is easy to use but the dumped that idea since I had decided I wanted a way to  improve features and turn FGBLG into a proper tech stack. So that’s why I went with Axum <del>Plus  it also had more docs and stuff</del> .
+So uhh
+that’s how I did it</p>
+<p>BAI BAIII</p>
+<h1>:3</h1>
+
+    </main>
+    <button id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; background: none; border: none; font-size: 24px; color: white;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <footer>
+        <p>&copy; 2025 My Blog. All rights reserved.</p>
+    </footer>
+    <script>
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
