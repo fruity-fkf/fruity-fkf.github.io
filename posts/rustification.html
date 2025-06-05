@@ -8,25 +8,56 @@
     <link rel="stylesheet" href="/css/style.css">
     
     <!-- Syntax highlighting for code blocks -->
-    <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fruity-fkf/highlightjs-themes@v1.0.0/themes/gruvbox-material-dark-hard.css">
+
+    
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <!-- Language support -->
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/rust.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/typescript.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/cpp.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/csharp.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/java.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/go.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/bash.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/shell.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/sql.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/yaml.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/json.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/xml.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/css.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/scss.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/markdown.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/toml.min.js"></script>
     <script>hljs.highlightAll();</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .nav-logo {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <nav class="top-nav">
         <div class="nav-container">
             <a href="/" class="nav-logo">My Blog</a>
             <ul class="nav-links">
-                <li><a href="/home.html">Home</a></li>
-                <li><a href="/about/index.html">About</a></li>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about.html">About</a></li>
             </ul>
         </div>
     </nav>
     <main class="content">
-        <h1>Hoi..</h1>
-<h2>How did we get here….</h2>
+        <h1><a href="#hoi" aria-hidden="true" class="anchor" id="hoi"></a>Hoi..</h1>
+<h2><a href="#how-did-we-get-here" aria-hidden="true" class="anchor" id="how-did-we-get-here"></a>How did we get here….</h2>
 <hr />
 <p>So recently I was wondering what it'd be like to use Rust. IDK why….I
 just had the urge to try rust.</p>
@@ -40,13 +71,13 @@ or three days later I got another video suggestion <a href="https://www.youtube.
 a 10 minute video or so.</a>
 That reignited the will to try out an all rust dev system. So that's
 how I ended up writing this….</p>
-<h2>The challange:</h2>
+<h2><a href="#the-challange" aria-hidden="true" class="anchor" id="the-challange"></a>The challange:</h2>
 <p>For the next month I will limit myself to using as many rust based tools
 as possible. Such as helix for code editing, nu as the shell and things
 like that. I will also try to only code my projects in rust and try to
 learn rust in general. And the main thing I will try to do is to
 document as much of the project as possible and then publish it.</p>
-<h2>The setup:</h2>
+<h2><a href="#the-setup" aria-hidden="true" class="anchor" id="the-setup"></a>The setup:</h2>
 <p>I'm on NixOS. I manage my config files via home manager. so every app
 was configured by it. The config is available on my github. I am using
 Nushell with the carapace backend/completion engine( IDK what to call it

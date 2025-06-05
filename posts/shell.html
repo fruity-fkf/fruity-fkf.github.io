@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Syntax highlighting for code blocks -->
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fruity-fkf/highlightjs-themes@v1.0.0/themes/gruvbox-material-dark-hard.css">
+
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <!-- Language support -->
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/rust.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/typescript.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/cpp.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/csharp.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/java.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/go.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/bash.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/shell.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/sql.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/yaml.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/json.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/xml.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/css.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/scss.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/markdown.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/toml.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .nav-logo {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">My Blog</a>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="content">
+        <h1><a href="#the-shell-tutorial" aria-hidden="true" class="anchor" id="the-shell-tutorial"></a>the shell tutorial</h1>
+<ul>
+<li><a href="#hoi">Hoi.</a></li>
+<li><a href="#setting-stuff-up">Setting stuff up.</a>
+<ul>
+<li><a href="#the-libraries">The libraries.</a></li>
+<li><a href="#setting-up-the-files">Setting up the files.</a></li>
+</ul>
+</li>
+<li><a href="#writing-the-actual-code">Writing the actual code.</a>
+<ul>
+<li><a href="#beginning">beginning</a></li>
+<li><a href="#init-and-basic-input">Init and basic input</a></li>
+<li><a href="#execution">execution.</a></li>
+<li><a href="#shell-builtins">Shell builtins.</a></li>
+<li><a href="#main-function">Main function.</a></li>
+</ul>
+</li>
+<li><a href="#the-end">The end</a></li>
+</ul>
+<h1><a href="#hoi" aria-hidden="true" class="anchor" id="hoi"></a>Hoi.</h1>
+<p>So I kinda promised to write this tutorial almost half a year ago but I
+seem to have sadly forgotten to write it.😔 My apolocheese. (insert
+image of nazrin here.)</p>
+<p>So this is a tutorial to write a minimal shell.</p>
+<h1><a href="#setting-stuff-up" aria-hidden="true" class="anchor" id="setting-stuff-up"></a>Setting stuff up.</h1>
+<h2><a href="#the-libraries" aria-hidden="true" class="anchor" id="the-libraries"></a>The libraries.</h2>
+<p>You will need the gnu readline library. install it through your package
+manager or smthn IDK. We basically need it to handle our input. Though
+there are other alternatives, I prefer this since it's super easy. ALSO
+IT EFFIN SUPPORTS VIM MODE HELL YEAH. Other than that you don't really
+need anything.</p>
+<h2><a href="#setting-up-the-files" aria-hidden="true" class="anchor" id="setting-up-the-files"></a>Setting up the files.</h2>
+<p>So we need one single C file. Just name it shell.c for simplcity. Other
+than that we just need a makefile. And that's all :3 Now put this in
+the makefile:</p>
+<pre><code class="language-make">shell: shell.c
+    gcc shell.c -o shell -Wall -Wextra -pedantic -std=c99 -lreadline
+</code></pre>
+<p>for those who don't get makefiles, we're just running the gcc compiler
+with some flags. They ar:</p>
+<ul>
+<li>`-Wall` — enables most common warning messages.</li>
+<li>`-Wextra` — enables additional warnings taht wall doesn't have</li>
+<li>`-pedantic` — enforces strict ISO C compliance. Better to write
+clean code</li>
+<li>`-std=c99` — uses the C99 standard for compiling (THE BEST
+FUCKING STANDARD FOR C. THE NEW WOKE LIBERAL STANDARDS AER ASS. C99
+SUPREMACY).</li>
+</ul>
+<h1><a href="#writing-the-actual-code" aria-hidden="true" class="anchor" id="writing-the-actual-code"></a>Writing the actual code.</h1>
+<h2><a href="#beginning" aria-hidden="true" class="anchor" id="beginning"></a>beginning</h2>
+<p>So we're just gonna import some libraries for now.</p>
+<pre><code class="language-c">#define _GNU_SOURCE
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;readline/readline.h&gt;
+</code></pre>
+<p>First of all, We're defining <del>GNUSOURCE</del> as the macro. It just enables
+some non standard macros since we're going to be writing substandard
+ass code rn. :3 The rest are pretty obvious I think. Stdio, stdlib and
+string are for the usual reasons. and Sys/unistd are for lower level
+stuff. ANd I already explained what we need readline for.</p>
+<p>Now we need to define some macros.</p>
+<pre><code class="language-c">#define MAXLTR 1000 // max letter count
+#define MAXLIST 100 // max comand amont
+#define commandCount 4
+</code></pre>
+<p>they are for some stuff that will come up later. Let's just ignore
+those for now.</p>
+<pre><code class="language-c">#define clear() printf(&quot;\033[H\033[J&quot;)
+</code></pre>
+<p>And this is for the clear() function. Yes I'm just turning it into a
+macro since we don't need more than that. So that is tje escape
+sequence to clean the terminal screen. that's what gets run when you do
+a clear in the terminal.</p>
+<h2><a href="#init-and-basic-input" aria-hidden="true" class="anchor" id="init-and-basic-input"></a>Init and basic input</h2>
+<p>Now we need to write an init function. It will get executed the moment
+you opne the shell.</p>
+<pre><code class="language-c">void init() {
+  // should add some shit later but CBA. For now it just clears teh screen and greets you
+  clear();
+  char *username = getenv(&quot;USER&quot;);
+  printf(&quot;Hoi 0/\n&quot;);
+  printf(&quot;USER: %s&quot;, username);
+}
+</code></pre>
+<p>it's pretty rudemantay. Just a basic outline for now. We're just
+greetings the user and then showing the username taht we got from
+getenv. It's a function to grab envirorment variables from the
+main/user shell.</p>
+<pre><code class="language-c">//input bugfer
+int takeInput(char *str) {
+  char *buf;
+
+  buf = readline(&quot;\n  &quot;);
+  if (buf == NULL || strlen(buf) == 0) {
+    return 1;
+  }
+
+  // TODO: fuckin make this more secure. strcpy can be pretty insecure
+  strcpy(str, buf);
+  return 0;
+}
+</code></pre>
+<p>so this is the main function to handle inputs. It takes the input via
+readline. And it renders the prompt too. I'm just using a nerd font
+symbol for the arrow for now. Now we need to move on to process
+management.</p>
+<h2><a href="#execution" aria-hidden="true" class="anchor" id="execution"></a>execution.</h2>
+<p>Now we need to handle threads and processes. So that they don't
+collide.</p>
+<pre><code class="language-c">void execArguments(char **parsed_input) {
+  // Forking a child
+  // -1 is bad 0 and other shit is good. &lt;-  pls remember
+  pid_t pid = fork();
+
+  if (pid == -1) {
+    printf(&quot;\nFailed forking..&quot;);
+    return;
+  } else if (pid == 0) {
+    if (execvp(parsed_input[0], parsed_input) &lt; 0) {
+      printf(&quot;\n executionfailed&quot;);
+    }
+    exit(0);
+  } else {
+    // waiting for child to terminate
+    wait(NULL);
+    return;
+  }
+}
+</code></pre>
+<p>this basically assigns a PID to each parsed command that gets executed.
+This is pretty good in practice. Other than that it just does some basic
+error handling in case something fails.</p>
+<h2><a href="#shell-builtins" aria-hidden="true" class="anchor" id="shell-builtins"></a>Shell builtins.</h2>
+<p>What's one thing that makes different shells stand out from each other?
+The answer is shell builtins. All shells ship with some extra tools and
+coomands that are native to that shell and that shell only. Like cd,
+help and other commands. We're gonna do this too to get basic
+functionality</p>
+<pre><code class="language-c">// shell builtin handler
+int shellBuiltinHandler(char **parsed) {
+  int i, switchOwnArgument = 0;
+  char *ListOfOwnCmds[commandCount] = {&quot;exit&quot;, &quot;cd&quot;, &quot;help&quot;, &quot;test_cmd&quot;};
+  //parses for shell builtins
+  for (i = 0; i &lt; commandCount; i++) {
+    if (strcmp(parsed[0], ListOfOwnCmds[i]) == 0) {
+      switchOwnArgument = i + 1; // for the switch cases stuff. Adding 1 since
+                                 // indexing that way seems easier
+      break;
+    }
+  }
+  // the switch case. we can add more shit by just expanding it. but tht would
+  // be a bit annoying NGL I'll show y'all how to do a better version next time.
+  switch (switchOwnArgument) {
+  case 1:
+    printf(&quot;\nBAI BAI\n&quot;);
+    exit(0);
+  case 2:
+    if (chdir(parsed[1]) != 0) {
+      printf(&quot;Error: Could not change directory to %s\n&quot;, parsed[1]);
+    } //since we don't have reguar cd we;re using chdir from unistd
+    return 1;
+  case 3:
+    printf(&quot;NO HELP FOR YOU HOE\n&quot;);
+    return 1;
+  case 4:
+    printf(&quot;test works hoe&quot;);
+    return 1;
+  default:
+    break;
+  }
+  return 0;
+}
+</code></pre>
+<p>So I'm getting the number of shell builtins from the macro that we
+declared in the beginning. and then making an array of that length. And
+we then fill it up with the commands we want as a builtin. Then the for
+loop goes through the command and looks for the shell builtins in the
+command. If it finds them then assigns a value from 1 to n to them. I'm
+not using 0 indexes because why not :3. Then based on that indexing it
+does switch statements. So for example if it finds &quot;exit&quot; then it will
+assign it the index 1 and do what is in case 1. In our case it is the
+exit() function to quit the shell after saying bye. Btw the regular cd
+command won't work in the shell since oftentimes they're actually a
+shell builtin. so for our case we're using the chdir command from
+unistd. Ignore the hoe part I was talking with a friend while writing
+the code so that affected me :sob:</p>
+<p>Now we need to parse the different parts of the command via whitespce
+detection.</p>
+<pre><code class="language-c">//  for parsing command words
+void parseSpace(char *str, char **parsed) {
+  int i;
+
+  for (i = 0; i &lt; MAXLIST; i++) {
+    parsed[i] = strsep(&amp;str, &quot; &quot;);
+
+    if (parsed[i] == NULL)
+      break;
+    if (strlen(parsed[i]) == 0)
+      i--;
+  }
+}
+</code></pre>
+<p>I'm not really sure what to say. I assume the code here is self evident
+enough. if it isn't then just give up this tutorial and learn more C 💀</p>
+<pre><code class="language-c">// main parsing and classivication function.
+int processString(char *str, char **parsed) {
+  parseSpace(str, parsed);
+
+  if (shellBuiltinHandler(parsed))
+    return 0;
+  else
+    return 1;
+}
+</code></pre>
+<p>this just does the final parsing/formatting and stuff. And checks if
+there are shell builtins in the inputted command.</p>
+<h2><a href="#main-function" aria-hidden="true" class="anchor" id="main-function"></a>Main function.</h2>
+<p>So now we finish everything with the main function.</p>
+<pre><code class="language-c">int main() {
+  char inputString[MAXLTR], *parsedArgs[MAXLIST];
+  char *parsedArgsPiped[MAXLIST];
+  int execFlag = 0;
+  init();
+
+  while (1) {
+    // take input
+    if (takeInput(inputString))
+      continue;
+    // process
+    execFlag = processString(inputString, parsedArgs);
+    // execflag returns zero if there is no command
+    // or it is a builtin command,
+    // 1 if it is a simple command
+
+    // execute
+    if (execFlag == 1)
+      execArguments(parsedArgs);
+
+    // if (execFlag == 2)
+    //   execPipedArguments(parsedArgs, parsedArgsPiped);
+  }
+  return 0;
+}
+</code></pre>
+<p>here we're taking our input. we limit the character and word limit
+using the macros we pre defined in the beginning. and then run the init
+function. Then run the init function. And then just run a while loop to
+keep taking and parsing inputs. It also keeps track of if the command is
+a shell builtin or a regular command.</p>
+<h1><a href="#the-end" aria-hidden="true" class="anchor" id="the-end"></a>The end</h1>
+<p>So uhhh. That's all. the shell should compile the make command and work
+when you run it. To exit the shell simply do a ctrl+c.</p>
+<p>BAI BAI :3</p>
+
+    </main>
+    <button id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; background: none; border: none; font-size: 24px; color: white;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <footer>
+        <p>&copy; 2025 FKF's faggot blog, no copyright exists :3 </p>
+    </footer>
+    <script>
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
