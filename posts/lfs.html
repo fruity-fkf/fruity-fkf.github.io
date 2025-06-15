@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Syntax highlighting for code blocks -->
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fruity-fkf/highlightjs-themes@v1.0.0/themes/gruvbox-material-dark-hard.css">
+
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <!-- Language support -->
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/rust.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/typescript.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/cpp.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/csharp.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/java.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/go.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/bash.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/shell.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/sql.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/yaml.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/json.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/xml.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/css.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/scss.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/markdown.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/dockerfile.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/toml.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .nav-logo {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">My Blog</a>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="content">
+        <h1><a href="#toc-tocsmallcapstag-tag-nametoc-toc" aria-hidden="true" class="anchor" id="toc-tocsmallcapstag-tag-nametoc-toc"></a>TOC [[TOC]{.smallcaps}]{.tag tag-name=”TOC”} {#toc}</h1>
+<ul>
+<li><a href="#hoi">Hoi.</a></li>
+<li><a href="#getting-started">Getting started.</a>
+<ul>
+<li><a href="#dependencies-and-setup">Dependencies and setup.</a></li>
+</ul>
+</li>
+<li><a href="#doing-the-lfs">Doing the LFS.</a>
+<ul>
+<li><a href="#compiling-linux">Compiling Linux.</a></li>
+<li><a href="#compiling-busybox">Compiling Busybox.</a></li>
+<li><a href="#writing-the-init-system">Writing the init system.</a></li>
+<li><a href="#building-the-init-system">Building the init system.</a></li>
+<li><a href="#bootloader-and-disk">Bootloader And disk.</a></li>
+</ul>
+</li>
+<li><a href="#booting">Booting.</a></li>
+</ul>
+<h1><a href="#hoi" aria-hidden="true" class="anchor" id="hoi"></a>Hoi.</h1>
+<p>So this is a tutorial on how to write a simple basic LFS install from
+scratch with busybox since I accidentally lost my old tutorial on it
+while switching from hugo to fgblg for my blog. So uhhh…. ;-;</p>
+<p>So this is going to be a tutorial for a <strong>very</strong> basic setup. So imagine
+only shit you get from bussybox. No GNU coreutils and stuff like that.
+That's because my holidays are over tomorrow and thus I need to finish
+this fast. So busybox is easier and faster for me to write. Plus easier
+for YOU to follow as well. BUSSYBOX SUPREMACY. BOW DOWN TO THE BUSSY. So
+uhh win-win situation I guess :3. But DW I'm gonna write a tutorial
+like this for GNU too either today or next week (I'm moving to my own
+place this week so… :3) NOTE: We're literally running everything out
+of initramfs. So basically this is nowhere near production ready shit.</p>
+<h1><a href="#getting-started" aria-hidden="true" class="anchor" id="getting-started"></a>Getting started.</h1>
+<h2><a href="#dependencies-and-setup" aria-hidden="true" class="anchor" id="dependencies-and-setup"></a>Dependencies and setup.</h2>
+<h3><a href="#packages" aria-hidden="true" class="anchor" id="packages"></a>Packages</h3>
+<p>So for simplicities sake I'm using Mint instead of NixOS to write this
+tutorial. So people running a typical FHS compliant distro should be
+able to follow this tutorial. So first of all we need some dependencies
+to build everything.</p>
+<pre><code class="language-shell">#fedora:
+sudo dnf install bzip2 git vim make gcc ncurses-devel flex bison bc cpio elfutils-libelf-devel openssl-devel  dosfstools 
+# arch:
+sudo pacman -S bzip2 git vim make gcc ncurses flex bison bc cpio libelf openssl  dosfstools
+# debian based systems:
+sudo apt  install bzip2 git vim make gcc libncurses-dev flex bison bc cpio libelf-dev libssl-dev  dosfstools
+</code></pre>
+<p>So Uhh in theory that's all we need.</p>
+<h3><a href="#folder-structure" aria-hidden="true" class="anchor" id="folder-structure"></a>Folder structure.</h3>
+<p>We need to set up the folders to put everything in. To make this simple
+just make a folder called LFS. and inside that folder make a folder
+called root. All the sourcecode and everything else will be in the LFS
+folder. And the compiled output will go inside the root dir. And dw we
+won't be needing any version control so don't initialize a git
+directory.</p>
+<h3><a href="#source-code" aria-hidden="true" class="anchor" id="source-code"></a>Source code.</h3>
+<p>Now we need to grab the sourcecode for the tools we're going to use.
+First of all we need Linux(if that wasn't obvious enough). I'm gong to
+grab it from github because that's teh easiest method to follow. We're
+gona be using –depth 1 because we DO FUCKING NOT need the entire git
+history of linux. &quot;5.2GB out of 6.7GB of the Linux kernel's repository
+is commit history, and only 1.5GB is the kernel itself.&quot; I got this
+from reddit. Though the github code with –depth 1 is closer to 250 than
+1.6 gigs. So uhh</p>
+<pre><code class="language-bash">git clone --depth 1 https://github.com/torvalds/linux.git
+</code></pre>
+<p>Now we need <a href="https://www.busybox.net/">busybox</a>. Basically it provides
+all the tools that you need. It basically acts like a replacement for
+the GNU coreutils. So uhh it's easier to set up (at least for this
+tutorials sake). It even provides a shell and stuff (ash is pretty
+decent ICL).</p>
+<pre><code class="language-bash">git clone --depth 1 https://git.busybox.net/busybox
+</code></pre>
+<p>So for now bussybox and the kernel are all we need.</p>
+<h1><a href="#doing-the-lfs" aria-hidden="true" class="anchor" id="doing-the-lfs"></a>Doing the LFS.</h1>
+<h2><a href="#compiling-linux" aria-hidden="true" class="anchor" id="compiling-linux"></a>Compiling Linux.</h2>
+<p>cd into the linux folder. Now we're going to run
+<code>make menuconfig</code>{.verbatim}. That'll pop up an interactive menu for us
+to configure the kernel before compiling it. BUUTTTT… We're not going
+to configure anything for now and use the regular defaults for sanity.
+So press tab to select &lt;exit&gt; and then press enter. And then save the
+configuration. We needed to run make menuconfig to load the defaults so
+don't skip it. Now we just need to compile the kernel. To do that we
+just need to run make with the -j flag for multithreading to speed
+things up. Replace 8 with the number of threads you have on your CPU.</p>
+<pre><code class="language-bash">make -j 8
+</code></pre>
+<p>Now just wait for it to compile. After it is done it should say
+something like &quot;Kernel: arch/x86/boot/bzImage is ready (#1)&quot;. And so
+that's where the Kernel is. The &quot;bzImage&quot; file is the compressed
+kernel file. Don't touch it for now.</p>
+<h2><a href="#compiling-busybox" aria-hidden="true" class="anchor" id="compiling-busybox"></a>Compiling Busybox.</h2>
+<p>Now we need to compile Bussybox. So cd into the bussybox folder then run
+<code>make menuconfig</code>{.verbatim} here. We are going to change something in
+the menu. Go to settings. Then scroll down to &quot;build static library&quot;
+and enable that because we're not going to be bothering with compiling
+every library and porting it to the LFS install. Now tab and select
+exit.Now go into Networking -&gt; tc. It should be enabled. NOW DISABLE
+IT. there's a bug that causes it to not compile if u have tc enabled.
+So uh disable that shit. Now tab and exist. Then exit again and save
+changes. Now run make -j 8 again. It should compile without errors.</p>
+<p>Now we need to make a folder in the LFS directory. Name the folder
+&quot;init&quot;. That's where the initramfs will be built for now. Initramfs
+(Initial RAM Filesystem) is a temporary root filesystem loaded into
+memory during the Linux boot process, before the real root filesystem is
+mounted. It contains essential files and drivers needed to initialize
+the system, such as device drivers, kernel modules, and scripts to mount
+the actual root filesystem. Once the real root filesystem is mounted,
+initramfs is discarded, allowing the system to continue booting normally
+(copy pasted this sorry ;-;).</p>
+<p>Now we need to install busybox to that place. cd into the busybox folder
+again. Now from there run this command:</p>
+<pre><code class="language-bash">make CONFIG_PREFIX=/home/fkf/LFS/root/init install
+</code></pre>
+<p>Replace the path with your path obviously. If you don't then it's your
+skill issue I guess.</p>
+<h2><a href="#writing-the-init-system" aria-hidden="true" class="anchor" id="writing-the-init-system"></a>Writing the init system.</h2>
+<p>Now we need an init file to start everything. Since the system we're
+making is barebones, the &quot;everything&quot; in question here is literally
+just the shell. So we're going to write our init script. And it's just
+going to be a simple bash script. Go to the init folder we made. THen
+write a file called &quot;init&quot;. So inside that we're going to put this:</p>
+<pre><code class="language-bash">#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+exec /bin/sh
+</code></pre>
+<p>So basically the bash file gets executed by the shell to run the shell.
+(yes it sounds braindead so uhhh don't think about it too much or your
+brain will hurt). Now make the file executable with chmod.</p>
+<p>So uhh that's all we need to do for the init file for now.</p>
+<h2><a href="#building-the-init-system" aria-hidden="true" class="anchor" id="building-the-init-system"></a>Building the init system.</h2>
+<p>So now we ned to compress the initramfs. So to do that we're going to
+use find (or fd…whatever you prefer) and then pipe that into cpio with
+some flags</p>
+<pre><code class="language-bash">find . | cpio -o -H newc &gt; ./initramfs.cpio
+</code></pre>
+<p>That should in theory build out your initramfs image.</p>
+<h2><a href="#bootloader-and-disk" aria-hidden="true" class="anchor" id="bootloader-and-disk"></a>Bootloader And disk.</h2>
+<h3><a href="#bootloader" aria-hidden="true" class="anchor" id="bootloader"></a>Bootloader.</h3>
+<p>grub. As shrimple as that. Or limine IDK whatever u want. I prefer
+syslinux because that's the one that works for me. Limine and sometimes
+grub for some fucking reason refuse to work on Fedora. Well IDK waht the
+issue is. So it is causing issues on fedora and I want this tutorial to
+be accessable to any distro. But the fedora bug is inconsistent so I
+assume it's an issue on my system only. So just install grub via any
+package manager on any linux distro you have. DW I'll list out the
+process for limine as well.</p>
+<h3><a href="#disks" aria-hidden="true" class="anchor" id="disks"></a>Disks.</h3>
+<p>So go to the root folder and run this command to create a virtual disk
+of 1 gig in size</p>
+<pre><code class="language-bash">dd if=/dev/zero of=disk.img bs=1M count=1024
+</code></pre>
+<p>now we need to edit the partitions inside the disk. Run the
+<code>fdisk disk.img</code>{.verbatim} command. then press n, then p, then 1. Leave
+teh sectors as default BTW. then a then w. That's all Run the
+<code>fdisk disk.img</code>{.verbatim} command. then press n, then p, then 1. Leave
+teh sectors as default BTW. then a then w. That's all.</p>
+<h3><a href="#mountinng-pt1" aria-hidden="true" class="anchor" id="mountinng-pt1"></a>Mountinng Pt.1</h3>
+<p>we need to mount the disk as a loopback device. So first we need to use
+lsblk to list loopback devices and show which loop number to use. for me
+loop0 was free.</p>
+<pre><code class="language-bash">sudo losetup /dev/loop0 disk.img
+</code></pre>
+<p>Remember your number. It will come up later. Now we need to mount the
+main partitioin in the disk image. So we need to offset the partition by
+1M and then mount it to another loopback device</p>
+<pre><code class="language-bash">sudo losetup /dev/loop1 disk.img -o 1M
+</code></pre>
+<p>So we have the entire disk on l0 and the main partition we care about in
+l1</p>
+<h3><a href="#partitions" aria-hidden="true" class="anchor" id="partitions"></a>partitions.</h3>
+<p>Now we need to make the partitions for the root directory of the OS.
+We'll use ext4 because it's ext4. The safe option.</p>
+<pre><code class="language-bash">sudo mkfs.ext4 /dev/loopXp1
+</code></pre>
+<p>replace X with your number. For me it was 0 so I wrote
+<code>sudo mkfs.ext4 /dev/loop1p1</code>{.verbatim}</p>
+<h3><a href="#mounting-pt2-electric-boogaloo" aria-hidden="true" class="anchor" id="mounting-pt2-electric-boogaloo"></a>Mounting Pt.2 Electric boogaloo.</h3>
+<p>Now we need to mount the ext4 partition to a mountpoint so we can
+perform operations.</p>
+<pre><code class="language-bash">sudo mount /dev/loop1 /mnt
+</code></pre>
+<blockquote>
+<p>NOTE: We have two loopback devices mounted here. One is loop0(for me
+at least). Which is the entire disk image mounted. The other is loop1
+which is for the root partition. We have that mounted at /mnt</p>
+</blockquote>
+<p>Now we need to copy over the kernel and init.cpio files to the mnt
+directory. Remember the file linux/arch/x86/boot/bzImage ? Copy that
+over to /mnt via <code>sudo cp</code>{.verbatim} after that copy over the init.cpio
+file too with the same method.</p>
+<h3><a href="#installing-the-bootloader" aria-hidden="true" class="anchor" id="installing-the-bootloader"></a>Installing the bootloader.</h3>
+<p>FUCK YOU GRUB FUCK YOU GRUB FUCK YOU GRUB FUCK YOU GRUB. I hate grub
+command flags. Anyways…. First of all make a folder called &quot;boot&quot; in
+the /mnt folder. Just do mkdir /mnt/boot Now time for the unholy command</p>
+<pre><code class="language-bash">sudo grub-install --target=i386-pc --root-directory=/mnt --no-floppy --modules=&quot;normal part_msdos ext2 multiboot&quot; /dev/loop0
+</code></pre>
+<p>So make sure you do /dev/loopX for the loopback for the ENTIRE IMAGE not
+the root folder only. This command installs the GRUB bootloader for BIOS
+(i386-pc) to a virtual disk (/dev/loop0), using /mnt as the root
+directory. It includes essential GRUB modules (normal, part<del>msdos</del>,
+ext2, multiboot) and disables floppy support. because floppy kinda
+slowes shit down evne when you don't have floppy drives. Now we need to
+configure the grub bootloader. opEn the /mnt/boot/grub/grub.cfg file
+with sudo and wrtire this:</p>
+<pre><code>menuentry 'Lincox' {
+    set root='(hd0,1)'
+    linux /bzImage
+    initrd /init.cpio
+}
+</code></pre>
+<p>Save and quit.</p>
+<h3><a href="#unmounting" aria-hidden="true" class="anchor" id="unmounting"></a>Unmounting.</h3>
+<p>Now we're kinda done I guess. We just need to unmount everything.</p>
+<pre><code class="language-bash">sudo umount /mnt
+sudo losetup -d /dev/loop0
+sudo losetup -d /dev/loop1
+</code></pre>
+<p>So uhh yeah losetup -d is basically the sudo umount equivalent for
+loopback devices. We're officially done now yayy :D</p>
+<h1><a href="#booting" aria-hidden="true" class="anchor" id="booting"></a>Booting.</h1>
+<p>Now let's just boot and use the image we made Install qemu to run the
+image. Now run</p>
+<pre><code>qemu-system-x86_64 disk.img
+</code></pre>
+<p>Now just use it as a regular VM :3</p>
+<p>we're done now bai bai</p>
+<p>BTW FUCK YOU BITCH WHOEVER MADE GRUB CONFIG SYNTAX AND CLI.</p>
+<p>And yes I intentionally forgot to write the limine version. Cry about it</p>
+
+    </main>
+    <button id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px; background: none; border: none; font-size: 24px; color: white;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <footer>
+        <p>&copy; 2025 FKF's faggot blog, no copyright exists :3 </p>
+    </footer>
+    <script>
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
